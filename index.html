@@ -1,0 +1,635 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Jagdeep Singh Virdi — Senior Telecom Billing Consultant & Independent Builder. 19+ years in telecom BSS, open-source tools, and local-first AI. Based in Bangkok, Thailand.">
+<meta name="keywords" content="Jagdeep Singh Virdi, telecom billing, BSS, Flutter, Python, PostgreSQL, FlowForge, PlayCru, Bangkok">
+<meta property="og:title" content="Jagdeep Singh Virdi">
+<meta property="og:description" content="Senior Telecom Billing Consultant & Independent Builder. 19+ years across Asia, Middle East, and Europe.">
+<meta property="og:url" content="https://jagdeepsinghvirdi.com">
+<meta property="og:type" content="website">
+<title>Jagdeep Singh Virdi</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=DM+Mono:wght@300;400;500&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --bg:#080C10;
+  --surface:#0D1218;
+  --surface2:#111820;
+  --border:#1E2A36;
+  --border2:#253444;
+  --accent:#00D9A3;
+  --accent2:#0099FF;
+  --text:#E8EDF2;
+  --text2:#8A9BB0;
+  --text3:#4A5F74;
+  --font-display:'Syne',sans-serif;
+  --font-mono:'DM Mono',monospace;
+  --font-body:'DM Sans',sans-serif;
+}
+html{scroll-behavior:smooth}
+body{
+  background:var(--bg);
+  color:var(--text);
+  font-family:var(--font-body);
+  font-size:16px;
+  line-height:1.7;
+  -webkit-font-smoothing:antialiased;
+  overflow-x:hidden;
+}
+body::before{
+  content:'';
+  position:fixed;
+  inset:0;
+  background-image:
+    linear-gradient(var(--border) 1px, transparent 1px),
+    linear-gradient(90deg, var(--border) 1px, transparent 1px);
+  background-size:60px 60px;
+  opacity:0.3;
+  pointer-events:none;
+  z-index:0;
+}
+.orb{position:fixed;border-radius:50%;filter:blur(120px);opacity:0.07;pointer-events:none;z-index:0}
+.orb1{width:600px;height:600px;background:var(--accent);top:-200px;right:-100px}
+.orb2{width:400px;height:400px;background:var(--accent2);bottom:0;left:-100px}
+.container{max-width:900px;margin:0 auto;padding:0 2rem;position:relative;z-index:1}
+
+/* NAV */
+nav{
+  padding:1.5rem 0;
+  border-bottom:1px solid var(--border);
+  position:sticky;top:0;
+  background:rgba(8,12,16,0.85);
+  backdrop-filter:blur(12px);
+  -webkit-backdrop-filter:blur(12px);
+  z-index:100;
+}
+.nav-inner{display:flex;align-items:center;justify-content:space-between}
+.nav-logo{
+  font-family:var(--font-display);
+  font-size:15px;
+  font-weight:700;
+  letter-spacing:0.05em;
+  color:var(--text);
+  text-decoration:none;
+}
+.nav-logo span{color:var(--accent)}
+.nav-links{display:flex;gap:2rem;list-style:none}
+.nav-links a{
+  font-family:var(--font-mono);
+  font-size:12px;
+  color:var(--text2);
+  text-decoration:none;
+  letter-spacing:0.08em;
+  transition:color 0.2s;
+}
+.nav-links a:hover{color:var(--accent)}
+
+/* HERO */
+.hero{padding:7rem 0 5rem}
+.hero-label{
+  font-family:var(--font-mono);
+  font-size:11px;
+  letter-spacing:0.2em;
+  color:var(--accent);
+  text-transform:uppercase;
+  margin-bottom:1.5rem;
+  display:flex;align-items:center;gap:8px;
+}
+.hero-label::before{content:'';width:24px;height:1px;background:var(--accent)}
+.hero-name{
+  font-family:var(--font-display);
+  font-size:clamp(3rem,8vw,5.5rem);
+  font-weight:800;
+  line-height:1.0;
+  letter-spacing:-0.02em;
+  margin-bottom:0.5rem;
+}
+.hero-name .line2{
+  color:transparent;
+  -webkit-text-stroke:1px var(--text3);
+}
+.hero-role{
+  font-family:var(--font-mono);
+  font-size:14px;
+  color:var(--accent);
+  margin-bottom:1.5rem;
+  letter-spacing:0.05em;
+}
+.hero-bio{
+  max-width:560px;
+  color:var(--text2);
+  font-size:16px;
+  line-height:1.8;
+  margin-bottom:2.5rem;
+  font-weight:300;
+}
+.hero-bio strong{color:var(--text);font-weight:500}
+.hero-links{display:flex;gap:12px;flex-wrap:wrap}
+.btn{
+  display:inline-flex;align-items:center;gap:8px;
+  padding:10px 20px;
+  border-radius:6px;
+  font-family:var(--font-mono);
+  font-size:12px;
+  letter-spacing:0.08em;
+  text-decoration:none;
+  transition:all 0.2s;
+  cursor:pointer;
+  border:none;
+}
+.btn-primary{background:var(--accent);color:#080C10;font-weight:500}
+.btn-primary:hover{background:#00f0b5;transform:translateY(-1px)}
+.btn-ghost{background:transparent;color:var(--text2);border:1px solid var(--border2)}
+.btn-ghost:hover{border-color:var(--accent);color:var(--accent)}
+.btn svg{width:14px;height:14px;flex-shrink:0}
+
+/* STATS BAR */
+.stats-bar{
+  display:flex;
+  border:1px solid var(--border);
+  border-radius:10px;
+  overflow:hidden;
+  margin:4rem 0;
+  background:var(--surface);
+}
+.stat-item{flex:1;padding:1.5rem;border-right:1px solid var(--border);text-align:center}
+.stat-item:last-child{border-right:none}
+.stat-num{
+  font-family:var(--font-display);
+  font-size:2rem;
+  font-weight:800;
+  color:var(--accent);
+  line-height:1;
+  display:block;
+  margin-bottom:4px;
+}
+.stat-label{
+  font-family:var(--font-mono);
+  font-size:10px;
+  color:var(--text3);
+  letter-spacing:0.12em;
+  text-transform:uppercase;
+}
+
+/* SECTIONS */
+section{padding:5rem 0}
+.section-label{
+  font-family:var(--font-mono);
+  font-size:11px;
+  color:var(--accent);
+  letter-spacing:0.2em;
+  text-transform:uppercase;
+  margin-bottom:0.5rem;
+  display:flex;align-items:center;gap:8px;
+}
+.section-label::before{content:'';width:16px;height:1px;background:var(--accent)}
+.section-title{
+  font-family:var(--font-display);
+  font-size:2rem;
+  font-weight:700;
+  margin-bottom:3rem;
+  letter-spacing:-0.01em;
+}
+
+/* PROJECT CARDS */
+.projects-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.project-card{
+  background:var(--surface);
+  border:1px solid var(--border);
+  border-radius:12px;
+  padding:1.5rem;
+  text-decoration:none;
+  transition:all 0.25s;
+  position:relative;
+  overflow:hidden;
+  display:block;
+}
+.project-card::before{
+  content:'';
+  position:absolute;
+  top:0;left:0;right:0;
+  height:2px;
+  background:linear-gradient(90deg,var(--accent),var(--accent2));
+  transform:scaleX(0);
+  transform-origin:left;
+  transition:transform 0.3s;
+}
+.project-card:hover{border-color:var(--border2);transform:translateY(-2px)}
+.project-card:hover::before{transform:scaleX(1)}
+.project-card.ghost{opacity:0.45;pointer-events:none}
+.card-top{display:flex;align-items:flex-start;justify-content:space-between;margin-bottom:1rem}
+.card-icon{
+  width:40px;height:40px;border-radius:8px;
+  background:var(--surface2);
+  border:1px solid var(--border2);
+  display:flex;align-items:center;justify-content:center;
+  font-size:18px;
+}
+.card-status{
+  font-family:var(--font-mono);
+  font-size:10px;
+  letter-spacing:0.1em;
+  padding:3px 8px;
+  border-radius:4px;
+  text-transform:uppercase;
+}
+.status-live{background:rgba(0,217,163,0.1);color:var(--accent);border:1px solid rgba(0,217,163,0.2)}
+.status-open{background:rgba(0,153,255,0.1);color:var(--accent2);border:1px solid rgba(0,153,255,0.2)}
+.status-pro{background:rgba(138,155,176,0.1);color:var(--text2);border:1px solid var(--border2)}
+.status-soon{background:rgba(74,95,116,0.1);color:var(--text3);border:1px solid var(--border)}
+.card-title{
+  font-family:var(--font-display);
+  font-size:1.1rem;
+  font-weight:700;
+  color:var(--text);
+  margin-bottom:0.4rem;
+}
+.card-desc{font-size:13px;color:var(--text2);line-height:1.6;margin-bottom:1rem;font-weight:300}
+.card-tags{display:flex;flex-wrap:wrap;gap:6px}
+.tag{
+  font-family:var(--font-mono);
+  font-size:10px;
+  padding:3px 8px;
+  border-radius:4px;
+  background:var(--surface2);
+  color:var(--text3);
+  border:1px solid var(--border);
+  letter-spacing:0.05em;
+}
+
+/* STACK */
+.stack-grid{display:flex;flex-wrap:wrap;gap:10px}
+.stack-pill{
+  font-family:var(--font-mono);
+  font-size:12px;
+  padding:8px 16px;
+  border-radius:6px;
+  background:var(--surface);
+  color:var(--text2);
+  border:1px solid var(--border);
+  letter-spacing:0.05em;
+  transition:all 0.2s;
+}
+.stack-pill:hover{border-color:var(--accent);color:var(--accent)}
+
+/* TIMELINE */
+.timeline{position:relative;padding-left:2rem}
+.timeline::before{
+  content:'';
+  position:absolute;
+  left:0;top:8px;bottom:0;
+  width:1px;
+  background:linear-gradient(180deg,var(--accent),transparent);
+}
+.tl-item{position:relative;margin-bottom:2.5rem}
+.tl-dot{
+  position:absolute;
+  left:-2.35rem;top:6px;
+  width:8px;height:8px;
+  border-radius:50%;
+  background:var(--accent);
+  border:2px solid var(--bg);
+}
+.tl-period{
+  font-family:var(--font-mono);
+  font-size:10px;
+  color:var(--text3);
+  letter-spacing:0.1em;
+  text-transform:uppercase;
+  margin-bottom:4px;
+}
+.tl-role{
+  font-family:var(--font-display);
+  font-size:1rem;
+  font-weight:600;
+  color:var(--text);
+  margin-bottom:2px;
+}
+.tl-company{font-size:13px;color:var(--accent);font-weight:400;margin-bottom:6px}
+.tl-desc{font-size:13px;color:var(--text2);line-height:1.6;font-weight:300}
+
+/* CREATIVE */
+.creative-row{display:flex;gap:12px}
+.creative-card{
+  flex:1;
+  background:var(--surface);
+  border:1px solid var(--border);
+  border-radius:10px;
+  padding:1.25rem;
+  text-decoration:none;
+  transition:all 0.2s;
+  display:flex;align-items:center;gap:12px;
+}
+.creative-card:hover{border-color:var(--border2)}
+.creative-icon{font-size:24px}
+.creative-label{font-family:var(--font-mono);font-size:11px;color:var(--text3);letter-spacing:0.08em;text-transform:uppercase;margin-bottom:2px}
+.creative-name{font-size:14px;font-weight:500;color:var(--text2)}
+
+/* FOOTER */
+footer{border-top:1px solid var(--border);padding:2rem 0;margin-top:2rem}
+.footer-inner{display:flex;align-items:center;justify-content:space-between}
+.footer-left{font-family:var(--font-mono);font-size:11px;color:var(--text3)}
+.footer-credit{font-family:var(--font-mono);font-size:11px;color:var(--text3)}
+.footer-credit a{color:var(--text3);text-decoration:none;transition:color 0.2s}
+.footer-credit a:hover{color:var(--accent)}
+
+/* ANIMATIONS */
+@keyframes fadeUp{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
+.hero{animation:fadeUp 0.7s ease both}
+.stats-bar{animation:fadeUp 0.7s 0.1s ease both}
+
+/* RESPONSIVE */
+@media(max-width:640px){
+  .projects-grid{grid-template-columns:1fr}
+  .stats-bar{flex-direction:column}
+  .stat-item{border-right:none;border-bottom:1px solid var(--border)}
+  .stat-item:last-child{border-bottom:none}
+  .creative-row{flex-direction:column}
+  .nav-links{display:none}
+  .footer-inner{flex-direction:column;gap:8px;text-align:center}
+  .hero{padding:4rem 0 3rem}
+  section{padding:3rem 0}
+}
+</style>
+</head>
+<body>
+
+<div class="orb orb1"></div>
+<div class="orb orb2"></div>
+
+<!-- NAV -->
+<nav>
+  <div class="container">
+    <div class="nav-inner">
+      <a href="#" class="nav-logo">JSV<span>.</span></a>
+      <ul class="nav-links">
+        <li><a href="#projects">Projects</a></li>
+        <li><a href="#stack">Stack</a></li>
+        <li><a href="#experience">Experience</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<!-- HERO -->
+<div class="container">
+  <section class="hero">
+    <div class="hero-label">Bangkok, Thailand</div>
+    <h1 class="hero-name">
+      Jagdeep<br>
+      <span class="line2">Singh Virdi</span>
+    </h1>
+    <p class="hero-role">Senior Telecom Billing Consultant &amp; Independent Builder</p>
+    <p class="hero-bio">
+      <strong>19+ years</strong> making high-stakes telecom billing systems work across Asia, the Middle East, and Europe. Off-hours, I build <strong>open-source tools</strong> and local-first AI systems — things that solve real problems without cloud dependency or unnecessary overhead.
+    </p>
+    <div class="hero-links">
+      <a href="https://github.com/jagdeepvirdi" target="_blank" rel="noopener" class="btn btn-primary">
+        <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.942.359.31.678.921.678 1.856 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z"/></svg>
+        GitHub
+      </a>
+      <a href="https://www.linkedin.com/in/jagdeepvirdi/" target="_blank" rel="noopener" class="btn btn-ghost">
+        <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+        LinkedIn
+      </a>
+      <a href="https://www.linkedin.com/in/jagdeepvirdi/" target="_blank" rel="noopener" class="btn btn-ghost">Contact</a>
+    </div>
+  </section>
+
+  <!-- STATS -->
+  <div class="stats-bar">
+    <div class="stat-item">
+      <span class="stat-num">19+</span>
+      <span class="stat-label">Years in Industry</span>
+    </div>
+    <div class="stat-item">
+      <span class="stat-num">12+</span>
+      <span class="stat-label">Operators Delivered</span>
+    </div>
+    <div class="stat-item">
+      <span class="stat-num">4</span>
+      <span class="stat-label">Continents</span>
+    </div>
+    <div class="stat-item">
+      <span class="stat-num">3</span>
+      <span class="stat-label">Open Source Projects</span>
+    </div>
+  </div>
+
+  <!-- PROJECTS -->
+  <section id="projects">
+    <div class="section-label">Work</div>
+    <h2 class="section-title">Projects &amp; Builds</h2>
+    <div class="projects-grid">
+
+      <div class="project-card">
+        <div class="card-top">
+          <div class="card-icon">🏃</div>
+          <span class="card-status status-live">In Development</span>
+        </div>
+        <div class="card-title">PlayCru</div>
+        <div class="card-desc">Hyperlocal mobile app for finding nearby players for spontaneous pickup sports games. People-first, not venue-first. Launching in Thailand.</div>
+        <div class="card-tags">
+          <span class="tag">Flutter</span>
+          <span class="tag">Firebase</span>
+          <span class="tag">Firestore</span>
+          <span class="tag">Android</span>
+        </div>
+      </div>
+
+      <div class="project-card">
+        <div class="card-top">
+          <div class="card-icon">⚙️</div>
+          <span class="card-status status-open">Open Source</span>
+        </div>
+        <div class="card-title">FlowForge</div>
+        <div class="card-desc">Database-driven pipeline orchestrator. Configure complex automation workflows entirely from a UI — no YAML, no Airflow overhead. Born from production telecom reporting.</div>
+        <div class="card-tags">
+          <span class="tag">Python</span>
+          <span class="tag">PostgreSQL</span>
+          <span class="tag">Open Source</span>
+        </div>
+      </div>
+
+      <div class="project-card">
+        <div class="card-top">
+          <div class="card-icon">📊</div>
+          <span class="card-status status-pro">Professional</span>
+        </div>
+        <div class="card-title">Telecom Reporting System</div>
+        <div class="card-desc">End-to-end automated reporting platform for a Thai MVNO — Finance, Marketing, and Sales reports running clockwork daily, weekly, and monthly. Fully configurable, zero manual intervention.</div>
+        <div class="card-tags">
+          <span class="tag">PostgreSQL</span>
+          <span class="tag">Python</span>
+          <span class="tag">Automation</span>
+          <span class="tag">BSS</span>
+        </div>
+      </div>
+
+      <div class="project-card">
+        <div class="card-top">
+          <div class="card-icon">🔗</div>
+          <span class="card-status status-pro">Professional</span>
+        </div>
+        <div class="card-title">SAP Finance Interface</div>
+        <div class="card-desc">Finance interface between a national telecom billing system and SAP. Became the client's primary invoice verification and revenue adjustment source — still running in production.</div>
+        <div class="card-tags">
+          <span class="tag">Perl</span>
+          <span class="tag">Oracle</span>
+          <span class="tag">PL/SQL</span>
+          <span class="tag">SAP</span>
+        </div>
+      </div>
+
+      <div class="project-card ghost">
+        <div class="card-top">
+          <div class="card-icon">🧠</div>
+          <span class="card-status status-soon">Coming Soon</span>
+        </div>
+        <div class="card-title">Memex</div>
+        <div class="card-desc">Privacy-first personal knowledge OS. Local LLM inference via Ollama — no API costs, no data leaving your machine.</div>
+        <div class="card-tags">
+          <span class="tag">Ollama</span>
+          <span class="tag">Local AI</span>
+          <span class="tag">RAG</span>
+        </div>
+      </div>
+
+      <div class="project-card ghost">
+        <div class="card-top">
+          <div class="card-icon">💡</div>
+          <span class="card-status status-soon">Coming Soon</span>
+        </div>
+        <div class="card-title">DevBrain</div>
+        <div class="card-desc">Developer knowledge base with RAG-powered Q&amp;A and runbooks. Tracks all active projects, runs entirely on local Ollama models.</div>
+        <div class="card-tags">
+          <span class="tag">Ollama</span>
+          <span class="tag">Python</span>
+          <span class="tag">Local AI</span>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- STACK -->
+  <section id="stack">
+    <div class="section-label">Tools</div>
+    <h2 class="section-title">Tech Stack</h2>
+    <div class="stack-grid">
+      <span class="stack-pill">Python</span>
+      <span class="stack-pill">PostgreSQL</span>
+      <span class="stack-pill">Perl</span>
+      <span class="stack-pill">Oracle / PL/SQL</span>
+      <span class="stack-pill">Flutter</span>
+      <span class="stack-pill">Dart</span>
+      <span class="stack-pill">Firebase</span>
+      <span class="stack-pill">Firestore</span>
+      <span class="stack-pill">Shell Scripting</span>
+      <span class="stack-pill">C / Pro*C</span>
+      <span class="stack-pill">Ollama</span>
+      <span class="stack-pill">Local LLMs</span>
+      <span class="stack-pill">Unix / Linux</span>
+      <span class="stack-pill">Git</span>
+    </div>
+  </section>
+
+  <!-- EXPERIENCE -->
+  <section id="experience">
+    <div class="section-label">Career</div>
+    <h2 class="section-title">Experience</h2>
+    <div class="timeline">
+      <div class="tl-item">
+        <div class="tl-dot"></div>
+        <div class="tl-period">Dec 2021 — Present</div>
+        <div class="tl-role">Lead Billing Consultant &amp; Senior Developer</div>
+        <div class="tl-company">Advance Tech Solutions · Bangkok</div>
+        <div class="tl-desc">Supporting National Telecom (NT) and redONE — Thailand's largest fixed-line provider and first postpaid MVNO. Custom development on Infinys Rating &amp; Billing 5.0, release management, and built a full automated reporting system from the ground up.</div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-dot"></div>
+        <div class="tl-period">Dec 2015 — Dec 2021</div>
+        <div class="tl-role">Senior Consultant</div>
+        <div class="tl-company">Ditto (Thailand) · Bangkok</div>
+        <div class="tl-desc">Senior billing consultant on Thai telecom engagements. Built and maintained custom components across RB 5.0 and CMP platforms. Automated data loading, reporting, and notifications — significantly cutting manual operational effort.</div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-dot"></div>
+        <div class="tl-period">Jul 2012 — Nov 2015</div>
+        <div class="tl-role">Global Service Lead, Billing Consultant</div>
+        <div class="tl-company">BT · Bengaluru</div>
+        <div class="tl-desc">Led custom development across 14 release trains for BT's billing platform. Designed a report-generation tool and led the core IRB 3.0.x → RBM 8.x upgrade workstream. Reviewed all vendor code and owned release management end to end.</div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-dot"></div>
+        <div class="tl-period">Jul 2006 — Jul 2012</div>
+        <div class="tl-role">System Analyst &amp; Senior Developer</div>
+        <div class="tl-company">Convergys / NetCracker · Hyderabad</div>
+        <div class="tl-desc">Delivered across 9+ operators in ASPAC, EMEA, and the Middle East — AIS, SmarTone, Qatar Telecom, Saudi Telecom, Telefónica, O2, Telecom Egypt, Sri Lanka Telecom. Tech Lead for Qatar Telecom RB upgrade; onsite development lead at SmarTone Hong Kong.</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CREATIVE SIDE -->
+  <section>
+    <div class="section-label">Beyond Code</div>
+    <h2 class="section-title">Creative Side</h2>
+    <div class="creative-row">
+      <a href="https://www.instagram.com/jaggiskitchen/" target="_blank" rel="noopener" class="creative-card">
+        <div class="creative-icon">🍳</div>
+        <div>
+          <div class="creative-label">Food &amp; Cooking</div>
+          <div class="creative-name">Jaggi's Kitchen</div>
+        </div>
+      </a>
+      <a href="https://jaggiskitchen.wordpress.com/" target="_blank" rel="noopener" class="creative-card">
+        <div class="creative-icon">✍️</div>
+        <div>
+          <div class="creative-label">Blog</div>
+          <div class="creative-name">Jaggi's Kitchen Blog</div>
+        </div>
+      </a>
+      <a href="https://www.instagram.com/jaggitravelphotography/" target="_blank" rel="noopener" class="creative-card">
+        <div class="creative-icon">📷</div>
+        <div>
+          <div class="creative-label">Travel Photography</div>
+          <div class="creative-name">Jaggi Travels</div>
+        </div>
+      </a>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section id="contact" style="padding-bottom:2rem">
+    <div class="section-label">Connect</div>
+    <h2 class="section-title">Get in Touch</h2>
+    <p style="color:var(--text2);font-size:15px;margin-bottom:2rem;max-width:480px;font-weight:300;line-height:1.8">
+      Open to conversations about telecom BSS, developer tooling, local-first AI, or just comparing notes on systems that actually work.
+    </p>
+    <div class="hero-links">
+      <a href="https://www.linkedin.com/in/jagdeepvirdi/" target="_blank" rel="noopener" class="btn btn-primary">Message on LinkedIn</a>
+      <a href="https://github.com/jagdeepvirdi" target="_blank" rel="noopener" class="btn btn-ghost">View GitHub</a>
+    </div>
+  </section>
+
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="container">
+    <div class="footer-inner">
+      <span class="footer-left">jagdeepsinghvirdi.com</span>
+      <span class="footer-credit">
+        Designed &amp; Developed by <a href="https://jagdeepsinghvirdi.com">Jagdeep Singh Virdi</a>
+      </span>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
