@@ -312,6 +312,46 @@ section{padding:5rem 0}
 .tl-company{font-size:13px;color:var(--accent);font-weight:400;margin-bottom:6px}
 .tl-desc{font-size:13px;color:var(--text2);line-height:1.6;font-weight:300}
 
+/* CERTS */
+.certs-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+.cert-card{
+  background:var(--surface);
+  border:1px solid var(--border);
+  border-radius:10px;
+  padding:1.25rem 1.5rem;
+  text-decoration:none;
+  transition:all 0.2s;
+  display:flex;
+  flex-direction:column;
+  gap:4px;
+}
+.cert-card:hover{border-color:var(--border2);transform:translateY(-2px)}
+.cert-provider{
+  font-family:var(--font-mono);
+  font-size:10px;
+  color:var(--accent);
+  letter-spacing:0.12em;
+  text-transform:uppercase;
+  margin-bottom:4px;
+}
+.cert-name{
+  font-family:var(--font-display);
+  font-size:0.95rem;
+  font-weight:600;
+  color:var(--text);
+  line-height:1.3;
+  flex:1;
+}
+.cert-verify{
+  font-family:var(--font-mono);
+  font-size:10px;
+  color:var(--text3);
+  letter-spacing:0.08em;
+  margin-top:8px;
+  transition:color 0.2s;
+}
+.cert-card:hover .cert-verify{color:var(--accent)}
+
 /* CREATIVE */
 .creative-row{display:flex;gap:12px}
 .creative-card{
@@ -348,6 +388,7 @@ footer{border-top:1px solid var(--border);padding:2rem 0;margin-top:2rem}
   .stats-bar{flex-direction:column}
   .stat-item{border-right:none;border-bottom:1px solid var(--border)}
   .stat-item:last-child{border-bottom:none}
+  .certs-grid{grid-template-columns:1fr}
   .creative-row{flex-direction:column}
   .nav-links{display:none}
   .footer-inner{flex-direction:column;gap:8px;text-align:center}
@@ -416,7 +457,7 @@ footer{border-top:1px solid var(--border);padding:2rem 0;margin-top:2rem}
       <span class="stat-label">Continents</span>
     </div>
     <div class="stat-item">
-      <span class="stat-num">5</span>
+      <span class="stat-num">6</span>
       <span class="stat-label">Open Source Projects</span>
     </div>
   </div>
@@ -442,7 +483,7 @@ footer{border-top:1px solid var(--border);padding:2rem 0;margin-top:2rem}
         </div>
       </div>
 
-      <div class="project-card">
+      <a href="https://github.com/jagdeepvirdi/flowforge" target="_blank" rel="noopener" class="project-card">
         <div class="card-top">
           <div class="card-icon">⚙️</div>
           <span class="card-status status-open">Open Source</span>
@@ -454,7 +495,7 @@ footer{border-top:1px solid var(--border);padding:2rem 0;margin-top:2rem}
           <span class="tag">PostgreSQL</span>
           <span class="tag">Open Source</span>
         </div>
-      </div>
+      </a>
 
       <div class="project-card">
         <div class="card-top">
@@ -517,7 +558,23 @@ footer{border-top:1px solid var(--border);padding:2rem 0;margin-top:2rem}
         </div>
       </a>
 
-      <div class="project-card">
+      <a href="https://github.com/jagdeepvirdi/file-to-markdown" target="_blank" rel="noopener" class="project-card">
+        <div class="card-top">
+          <div class="card-icon">📄</div>
+          <span class="card-status status-open">Open Source</span>
+        </div>
+        <div class="card-title">file-to-markdown</div>
+        <div class="card-desc">Local-first desktop app that converts 15+ document formats — PDF, DOCX, PPTX, XLSX, EPUB and more — to Markdown. No AI, no uploads, no internet required. OCR and audio transcription included.</div>
+        <div class="card-tags">
+          <span class="tag">Python</span>
+          <span class="tag">pywebview</span>
+          <span class="tag">MarkItDown</span>
+          <span class="tag">Desktop App</span>
+          <span class="tag">Local-first</span>
+        </div>
+      </a>
+
+      <a href="https://github.com/jagdeepvirdi/orbitly" target="_blank" rel="noopener" class="project-card">
         <div class="card-top">
           <div class="card-icon">🪐</div>
           <span class="card-status status-live">In Development</span>
@@ -530,7 +587,7 @@ footer{border-top:1px solid var(--border);padding:2rem 0;margin-top:2rem}
           <span class="tag">Supabase</span>
           <span class="tag">FastAPI</span>
         </div>
-      </div>
+      </a>
 
       <div class="project-card">
         <div class="card-top">
@@ -610,6 +667,33 @@ footer{border-top:1px solid var(--border);padding:2rem 0;margin-top:2rem}
         <div class="tl-company">Convergys / NetCracker · Hyderabad</div>
         <div class="tl-desc">Delivered across 9+ operators in ASPAC, EMEA, and the Middle East — AIS, SmarTone, Qatar Telecom, Saudi Telecom, Telefónica, O2, Telecom Egypt, Sri Lanka Telecom. Tech Lead for Qatar Telecom RB upgrade; onsite development lead at SmarTone Hong Kong.</div>
       </div>
+    </div>
+  </section>
+
+  <!-- CERTIFICATIONS -->
+  <section>
+    <div class="section-label">Learning</div>
+    <h2 class="section-title">Certifications</h2>
+    <div class="certs-grid">
+
+      <a href="https://www.linkedin.com/in/jagdeepvirdi/overlay/Certifications/1333377895/treasury/?profileId=ACoAAAQLpbYBOZvwy3MkJn34ANyY_k4qMKCQ3pc" target="_blank" rel="noopener" class="cert-card">
+        <div class="cert-provider">Outskill</div>
+        <div class="cert-name">Gen AI Engineering Mastermind</div>
+        <div class="cert-verify">View Certificate →</div>
+      </a>
+
+      <a href="https://www.coursera.org/account/accomplishments/specialization/certificate/WW3R97CF9VHL" target="_blank" rel="noopener" class="cert-card">
+        <div class="cert-provider">Coursera</div>
+        <div class="cert-name">PostgreSQL for Everybody Specialization</div>
+        <div class="cert-verify">View Certificate →</div>
+      </a>
+
+      <a href="https://www.udacity.com/certificate/GSWEXYHC" target="_blank" rel="noopener" class="cert-card">
+        <div class="cert-provider">Udacity</div>
+        <div class="cert-name">Data Science with Python</div>
+        <div class="cert-verify">View Certificate →</div>
+      </a>
+
     </div>
   </section>
 
