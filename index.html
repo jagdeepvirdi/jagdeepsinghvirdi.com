@@ -69,14 +69,56 @@ nav{
 }
 .nav-inner{display:flex;align-items:center;justify-content:space-between}
 .nav-logo{
+  display:flex;
+  align-items:center;
+  gap:10px;
   font-family:var(--font-display);
-  font-size:15px;
-  font-weight:700;
-  letter-spacing:0.05em;
   color:var(--text);
   text-decoration:none;
+  cursor:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='28' height='28'><circle cx='14' cy='14' r='5' fill='%2300D9A3' fill-opacity='0.6'/><circle cx='14' cy='14' r='11' fill='%2300D9A3' fill-opacity='0.18'/></svg>") 14 14, pointer;
 }
-.nav-logo span{color:var(--accent)}
+.logo-mark{display:inline-flex;align-items:center;gap:3px;color:var(--accent)}
+.logo-bracket{
+  width:7px;height:22px;
+  filter:drop-shadow(0 0 5px rgba(0,217,163,0.35));
+  transition:filter 0.4s ease;
+}
+.nav-logo:hover .logo-bracket{filter:drop-shadow(0 0 12px rgba(0,217,163,0.85)) drop-shadow(0 0 26px rgba(0,217,163,0.5))}
+.logo-word{
+  font-size:17px;font-weight:800;letter-spacing:-0.02em;color:var(--text);
+  display:inline-block;
+  transition:transform 0.3s cubic-bezier(0.22,1,0.36,1);
+}
+.nav-logo:hover .logo-word{transform:translateY(-2px)}
+.logo-tag{
+  position:relative;
+  overflow:hidden;
+  height:14px;
+  min-width:88px;
+  padding-left:10px;
+  margin-left:2px;
+  border-left:1px solid var(--border2);
+}
+.logo-tag-text .dot{color:var(--accent);display:inline-block;transform-origin:center}
+@keyframes dotPulse{
+  0%{transform:scale(1);opacity:1}
+  50%{transform:scale(1.8);opacity:0.5}
+  100%{transform:scale(1);opacity:1}
+}
+.logo-tag-text .dot.pulse{animation:dotPulse 0.5s ease}
+.logo-tag-text{
+  display:block;
+  font-family:var(--font-mono);
+  font-size:10px;
+  font-weight:400;
+  letter-spacing:0.1em;
+  text-transform:uppercase;
+  color:var(--text2);
+  white-space:nowrap;
+  line-height:14px;
+  opacity:0;
+  transform:translateY(-8px);
+}
 .nav-links{display:flex;gap:2rem;list-style:none}
 .nav-links a{
   font-family:var(--font-mono);
@@ -391,6 +433,7 @@ footer{border-top:1px solid var(--border);padding:2rem 0;margin-top:2rem}
   .certs-grid{grid-template-columns:1fr}
   .creative-row{flex-direction:column}
   .nav-links{display:none}
+  .logo-tag{display:none}
   .footer-inner{flex-direction:column;gap:8px;text-align:center}
   .hero{padding:4rem 0 3rem}
   section{padding:3rem 0}
@@ -406,7 +449,18 @@ footer{border-top:1px solid var(--border);padding:2rem 0;margin-top:2rem}
 <nav>
   <div class="container">
     <div class="nav-inner">
-      <a href="#" class="nav-logo">JSV<span>.</span></a>
+      <a href="#" class="nav-logo" aria-label="Jagdeep Singh Virdi — home">
+        <span class="logo-mark">
+          <svg class="logo-bracket" viewBox="0 0 16 40" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" aria-hidden="true">
+            <path id="logo-bracket-l" d="M13 3H8c-2.8 0-5 2.2-5 5v24c0 2.8 2.2 5 5 5h5" stroke-dasharray="60" stroke-dashoffset="60"/>
+          </svg>
+          <span class="logo-word">JSV</span>
+          <svg class="logo-bracket" viewBox="0 0 16 40" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" aria-hidden="true">
+            <path id="logo-bracket-r" d="M3 3h5c2.8 0 5 2.2 5 5v24c0 2.8-2.2 5-5 5H3" stroke-dasharray="60" stroke-dashoffset="60"/>
+          </svg>
+        </span>
+        <span class="logo-tag"><span class="logo-tag-text" id="logoTagText">Engineer<span class="dot">.</span></span></span>
+      </a>
       <ul class="nav-links">
         <li><a href="#projects">Projects</a></li>
         <li><a href="#stack">Stack</a></li>
@@ -782,6 +836,64 @@ footer{border-top:1px solid var(--border);padding:2rem 0;margin-top:2rem}
     </div>
   </div>
 </footer>
+
+
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+  const bracketLeft = document.getElementById('logo-bracket-l');
+  const bracketRight = document.getElementById('logo-bracket-r');
+  requestAnimationFrame(() => {
+    bracketLeft.style.transition = 'stroke-dashoffset 0.6s cubic-bezier(0.22,1,0.36,1)';
+    bracketRight.style.transition = 'stroke-dashoffset 0.6s cubic-bezier(0.22,1,0.36,1) 0.15s';
+    bracketLeft.style.strokeDashoffset = '0';
+    bracketRight.style.strokeDashoffset = '0';
+  });
+
+  const words = ['Engineer', 'Builder', 'Problem Solver'];
+  let idx = 0;
+  const tagText = document.getElementById('logoTagText');
+
+  function showFirst() {
+    tagText.style.transition = 'transform 0.4s cubic-bezier(0.22,1,0.36,1), opacity 0.4s ease';
+    tagText.style.transform = 'translateY(0)';
+    tagText.style.opacity = '1';
+  }
+
+  function cycleTag() {
+    tagText.style.transform = 'translateY(8px)';
+    tagText.style.opacity = '0';
+    setTimeout(() => {
+      idx = (idx + 1) % words.length;
+      tagText.innerHTML = words[idx] + '<span class="dot">.</span>';
+      tagText.style.transition = 'none';
+      tagText.style.transform = 'translateY(-8px)';
+      void tagText.offsetHeight;
+      tagText.style.transition = 'transform 0.4s cubic-bezier(0.22,1,0.36,1), opacity 0.4s ease';
+      tagText.style.transform = 'translateY(0)';
+      tagText.style.opacity = '1';
+    }, 400);
+  }
+
+  setTimeout(showFirst, 900);
+
+  let tagInterval = setInterval(cycleTag, 2600);
+
+  const navLogo = document.querySelector('.nav-logo');
+  navLogo.addEventListener('mouseenter', () => {
+    clearInterval(tagInterval);
+    const dot = tagText.querySelector('.dot');
+    if (dot) {
+      dot.classList.remove('pulse');
+      void dot.offsetWidth;
+      dot.classList.add('pulse');
+    }
+  });
+  navLogo.addEventListener('mouseleave', () => {
+    clearInterval(tagInterval);
+    tagInterval = setInterval(cycleTag, 2600);
+  });
+});
+</script>
 
 </body>
 </html>
