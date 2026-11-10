@@ -283,6 +283,95 @@ section{padding:5rem 0}
 .status-open{background:rgba(0,153,255,0.1);color:var(--accent2);border:1px solid rgba(0,153,255,0.2)}
 .status-pro{background:rgba(138,155,176,0.1);color:var(--text2);border:1px solid var(--border2)}
 .status-soon{background:rgba(74,95,116,0.1);color:var(--text3);border:1px solid var(--border)}
+.status-dev{background:rgba(245,165,36,0.1);color:#F5A524;border:1px solid rgba(245,165,36,0.25)}
+.status-private{background:rgba(74,95,116,0.1);color:var(--text3);border:1px solid var(--border)}
+.status-released{background:rgba(138,155,176,0.1);color:var(--text2);border:1px solid var(--border2)}
+.card-badges{display:flex;flex-wrap:wrap;gap:6px;justify-content:flex-end}
+.card-type{background:transparent;color:var(--text3);border:1px solid var(--border)}
+.type-open{color:var(--accent2);border-color:rgba(0,153,255,0.3)}
+.type-pro{color:var(--text2);border-color:var(--border2)}
+.domain-pill{
+  display:inline-block;
+  font-family:var(--font-mono);
+  font-size:10px;
+  letter-spacing:0.05em;
+  padding:2px 8px;
+  border-radius:4px;
+  color:var(--accent);
+  background:rgba(0,217,163,0.08);
+  border:1px solid rgba(0,217,163,0.2);
+  margin-bottom:1rem;
+}
+.project-card[hidden]{display:none}
+
+/* FILTER CHIPS */
+#projects .section-title{margin-bottom:1.5rem}
+.filter-bar{display:flex;flex-wrap:wrap;gap:8px}
+.chip{
+  font-family:var(--font-mono);
+  font-size:12px;
+  padding:7px 14px;
+  border-radius:999px;
+  background:var(--surface);
+  color:var(--text2);
+  border:1px solid var(--border);
+  cursor:pointer;
+  transition:all 0.2s;
+}
+.chip:hover{border-color:var(--accent);color:var(--accent)}
+.chip[aria-pressed="true"]{background:rgba(0,217,163,0.1);color:var(--accent);border-color:rgba(0,217,163,0.35)}
+.chip:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+.chip .count{opacity:0.6;margin-left:6px}
+.filter-status{font-family:var(--font-mono);font-size:11px;color:var(--text3);margin:10px 0}
+.filter-wrap{
+  position:sticky;top:var(--nav-h,78px);z-index:50;
+  background:rgba(8,12,16,0.92);
+  backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);
+  padding:10px 0 1px;margin-bottom:1rem;
+}
+.subhead{font-family:var(--font-mono);font-size:11px;letter-spacing:0.15em;text-transform:uppercase;color:var(--text3);margin:0 0 12px;scroll-margin-top:calc(var(--nav-h,78px) + 80px)}
+#featured{margin-bottom:2.5rem}
+#featured[hidden]{display:none}
+.project-card.featured{padding:1.75rem;border-color:rgba(0,217,163,0.22);background:linear-gradient(160deg,rgba(0,217,163,0.05),var(--surface) 60%)}
+.project-card.featured .card-title{font-size:1.3rem}
+.project-card.featured a.project-card .card-desc,
+a.project-card.featured .card-desc{display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden}
+
+/* COMPACT CARDS (main list) */
+.projects-grid.compact .project-card{padding:1.25rem}
+.projects-grid.compact .card-top{margin-bottom:0.75rem}
+.projects-grid.compact .card-desc{margin-bottom:0.75rem}
+.projects-grid.compact .domain-pill{margin-bottom:0.75rem}
+/* clamp only cards that link out; unlinked cards have nowhere else to show the full text */
+.projects-grid.compact a.project-card .card-desc{display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.projects-grid.compact .card-tags .tag:nth-child(n+4){display:none}
+.show-more{display:flex;margin:1.5rem auto 0;cursor:pointer}
+.show-more[hidden]{display:none}
+
+/* LIVE APPS STRIP */
+.apps-section{padding:0}
+.apps-section + #projects{padding-top:3rem}
+.apps-section .section-title{margin-bottom:1.5rem}
+.apps-row{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:12px}
+.apps-row{scrollbar-width:thin;scrollbar-color:var(--border2) transparent}
+.app-tile{
+  display:flex;flex-direction:column;gap:8px;
+  background:var(--surface);
+  border:1px solid var(--border);
+  border-radius:12px;
+  padding:1rem;
+  text-decoration:none;
+  transition:all 0.25s;
+}
+.app-tile:hover{border-color:var(--accent);transform:translateY(-2px)}
+.app-tile:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+.app-tile .card-title{margin:0}
+.app-pitch{
+  font-size:13px;color:var(--text2);line-height:1.5;font-weight:300;
+  display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden;
+}
+.app-tile .domain-pill{margin:auto 0 0;align-self:flex-start;max-width:100%;overflow-wrap:anywhere;line-height:1.4;padding:3px 8px}
+.pill-suffix{display:block;opacity:0.65;font-size:8px;letter-spacing:0}
 .card-title{
   font-family:var(--font-display);
   font-size:1.1rem;
@@ -427,6 +516,9 @@ footer{border-top:1px solid var(--border);padding:2rem 0;margin-top:2rem}
 /* RESPONSIVE */
 @media(max-width:640px){
   .projects-grid{grid-template-columns:1fr}
+  .filter-wrap{position:static;background:none;backdrop-filter:none;-webkit-backdrop-filter:none;padding:0}
+  .apps-row{display:flex;overflow-x:auto;scroll-snap-type:x mandatory;padding-bottom:8px;-webkit-overflow-scrolling:touch}
+  .app-tile{flex:0 0 72%;scroll-snap-align:start}
   .stats-bar{flex-direction:column}
   .stat-item{border-right:none;border-bottom:1px solid var(--border)}
   .stat-item:last-child{border-bottom:none}
@@ -462,6 +554,7 @@ footer{border-top:1px solid var(--border);padding:2rem 0;margin-top:2rem}
         <span class="logo-tag"><span class="logo-tag-text" id="logoTagText">Engineer<span class="dot">.</span></span></span>
       </a>
       <ul class="nav-links">
+        <li><a href="#apps">Apps</a></li>
         <li><a href="#projects">Projects</a></li>
         <li><a href="#stack">Stack</a></li>
         <li><a href="#experience">Experience</a></li>
@@ -492,6 +585,7 @@ footer{border-top:1px solid var(--border);padding:2rem 0;margin-top:2rem}
         <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
         LinkedIn
       </a>
+      <a href="#apps" class="btn btn-ghost">Explore live apps</a>
       <a href="#contact" class="btn btn-ghost">Contact</a>
     </div>
   </section>
@@ -511,21 +605,37 @@ footer{border-top:1px solid var(--border);padding:2rem 0;margin-top:2rem}
       <span class="stat-label">Continents</span>
     </div>
     <div class="stat-item">
-      <span class="stat-num">10</span>
+      <span class="stat-num" id="statOpen">7</span>
       <span class="stat-label">Open Source Projects</span>
     </div>
   </div>
+
+  <!-- LIVE APPS (filled from project cards by script) -->
+  <section id="apps" class="apps-section" hidden>
+    <div class="section-label">Try them</div>
+    <h2 class="section-title">Explore my live apps</h2>
+    <div class="apps-row" id="appsRow"></div>
+  </section>
 
   <!-- PROJECTS -->
   <section id="projects">
     <div class="section-label">Work</div>
     <h2 class="section-title">Projects &amp; Builds</h2>
-    <div class="projects-grid">
+    <div id="featured" hidden>
+      <h3 class="subhead">Featured</h3>
+      <div class="projects-grid" id="featuredGrid"></div>
+    </div>
+    <h3 class="subhead" id="allHeading">Projects</h3>
+    <div class="filter-wrap">
+      <div class="filter-bar" id="filterBar" role="group" aria-label="Filter projects"></div>
+      <p class="filter-status" id="filterStatus" role="status" aria-live="polite"></p>
+    </div>
+    <div class="projects-grid compact" id="projectsGrid">
 
-      <div class="project-card">
+      <div class="project-card" data-status="dev" data-type="personal" data-category="Apps" data-domain="">
         <div class="card-top">
           <div class="card-icon">🏃</div>
-          <span class="card-status status-live">In Development</span>
+          <div class="card-badges"><span class="card-status status-dev">In Development</span><span class="card-status card-type type-personal">Personal</span></div>
         </div>
         <div class="card-title">PlayCru</div>
         <div class="card-desc">Hyperlocal mobile app for finding nearby players for spontaneous pickup sports games. People-first, not venue-first. Launching in Thailand.</div>
@@ -537,10 +647,10 @@ footer{border-top:1px solid var(--border);padding:2rem 0;margin-top:2rem}
         </div>
       </div>
 
-      <a href="https://github.com/jagdeepvirdi/flowforge" target="_blank" rel="noopener" class="project-card">
+      <a href="https://github.com/jagdeepvirdi/flowforge" target="_blank" rel="noopener" class="project-card" data-status="released" data-type="open" data-category="Developer tools" data-domain="github.com">
         <div class="card-top">
           <div class="card-icon">⚙️</div>
-          <span class="card-status status-open">Open Source</span>
+          <div class="card-badges"><span class="card-status status-released">Released</span><span class="card-status card-type type-open">Open source</span></div>
         </div>
         <div class="card-title">FlowForge</div>
         <div class="card-desc">Database-driven pipeline orchestrator. Configure complex automation workflows entirely from a UI — no YAML, no Airflow overhead. Born from production telecom reporting.</div>
@@ -551,10 +661,10 @@ footer{border-top:1px solid var(--border);padding:2rem 0;margin-top:2rem}
         </div>
       </a>
 
-      <div class="project-card">
+      <div class="project-card" data-status="private" data-type="pro" data-category="Telecom (professional)" data-featured="true" data-domain="">
         <div class="card-top">
           <div class="card-icon">📊</div>
-          <span class="card-status status-pro">Professional</span>
+          <div class="card-badges"><span class="card-status status-private">Private</span><span class="card-status card-type type-pro">Professional</span></div>
         </div>
         <div class="card-title">Telecom Reporting System</div>
         <div class="card-desc">End-to-end automated reporting platform for a Thai MVNO — Finance, Marketing, and Sales reports running clockwork daily, weekly, and monthly. Fully configurable, zero manual intervention.</div>
@@ -566,10 +676,10 @@ footer{border-top:1px solid var(--border);padding:2rem 0;margin-top:2rem}
         </div>
       </div>
 
-      <div class="project-card">
+      <div class="project-card" data-status="private" data-type="pro" data-category="Telecom (professional)" data-domain="">
         <div class="card-top">
           <div class="card-icon">🔗</div>
-          <span class="card-status status-pro">Professional</span>
+          <div class="card-badges"><span class="card-status status-private">Private</span><span class="card-status card-type type-pro">Professional</span></div>
         </div>
         <div class="card-title">SAP Finance Interface</div>
         <div class="card-desc">Finance interface between a national telecom billing system and SAP. Became the client's primary invoice verification and revenue adjustment source — still running in production.</div>
@@ -581,10 +691,10 @@ footer{border-top:1px solid var(--border);padding:2rem 0;margin-top:2rem}
         </div>
       </div>
 
-      <a href="https://github.com/jagdeepvirdi/memex" target="_blank" rel="noopener" class="project-card">
+      <a href="https://github.com/jagdeepvirdi/memex" target="_blank" rel="noopener" class="project-card" data-status="released" data-type="open" data-category="Developer tools" data-domain="github.com">
         <div class="card-top">
           <div class="card-icon">🧠</div>
-          <span class="card-status status-open">Open Source</span>
+          <div class="card-badges"><span class="card-status status-released">Released</span><span class="card-status card-type type-open">Open source</span></div>
         </div>
         <div class="card-title">Memex</div>
         <div class="card-desc">Privacy-first personal knowledge OS. Local LLM inference via Ollama — no API costs, no data leaving your machine. Semantic search powered by pgvector.</div>
@@ -597,10 +707,10 @@ footer{border-top:1px solid var(--border);padding:2rem 0;margin-top:2rem}
         </div>
       </a>
 
-      <a href="https://github.com/jagdeepvirdi/devbrain" target="_blank" rel="noopener" class="project-card">
+      <a href="https://github.com/jagdeepvirdi/devbrain" target="_blank" rel="noopener" class="project-card" data-status="released" data-type="open" data-category="Developer tools" data-domain="github.com">
         <div class="card-top">
           <div class="card-icon">💡</div>
-          <span class="card-status status-open">Open Source</span>
+          <div class="card-badges"><span class="card-status status-released">Released</span><span class="card-status card-type type-open">Open source</span></div>
         </div>
         <div class="card-title">DevBrain</div>
         <div class="card-desc">Developer knowledge base and command center with RAG-powered Q&amp;A and runbooks. Notification hub via Telegram. Tracks all active projects, runs entirely on local Ollama models.</div>
@@ -612,10 +722,10 @@ footer{border-top:1px solid var(--border);padding:2rem 0;margin-top:2rem}
         </div>
       </a>
 
-      <a href="https://github.com/jagdeepvirdi/file-to-markdown" target="_blank" rel="noopener" class="project-card">
+      <a href="https://github.com/jagdeepvirdi/file-to-markdown" target="_blank" rel="noopener" class="project-card" data-status="released" data-type="open" data-category="Developer tools" data-domain="github.com">
         <div class="card-top">
           <div class="card-icon">📄</div>
-          <span class="card-status status-open">Open Source</span>
+          <div class="card-badges"><span class="card-status status-released">Released</span><span class="card-status card-type type-open">Open source</span></div>
         </div>
         <div class="card-title">file-to-markdown</div>
         <div class="card-desc">Local-first desktop app that converts 15+ document formats — PDF, DOCX, PPTX, XLSX, EPUB and more — to Markdown. No AI, no uploads, no internet required. OCR and audio transcription included.</div>
@@ -628,10 +738,10 @@ footer{border-top:1px solid var(--border);padding:2rem 0;margin-top:2rem}
         </div>
       </a>
 
-      <a href="https://github.com/jagdeepvirdi/orbitly" target="_blank" rel="noopener" class="project-card">
+      <a href="https://github.com/jagdeepvirdi/orbitly" target="_blank" rel="noopener" class="project-card" data-status="dev" data-type="open" data-category="Apps" data-domain="github.com">
         <div class="card-top">
           <div class="card-icon">🪐</div>
-          <span class="card-status status-live">In Development</span>
+          <div class="card-badges"><span class="card-status status-dev">In Development</span><span class="card-status card-type type-open">Open source</span></div>
         </div>
         <div class="card-title">Orbitly</div>
         <div class="card-desc">Personal life operating system. Unified dashboard for work tasks, wellness, cultural events, sports tracking, and family sharing — all in one place, built for how I actually live.</div>
@@ -643,10 +753,10 @@ footer{border-top:1px solid var(--border);padding:2rem 0;margin-top:2rem}
         </div>
       </a>
 
-      <a href="https://tekton-india.netlify.app/" target="_blank" rel="noopener" class="project-card">
+      <a href="https://tekton-india.netlify.app/" target="_blank" rel="noopener" class="project-card" data-status="live" data-type="pro" data-category="Web &amp; business sites" data-domain="tekton-india.netlify.app">
         <div class="card-top">
           <div class="card-icon">🪑</div>
-          <span class="card-status status-live">Live</span>
+          <div class="card-badges"><span class="card-status status-live">Live</span><span class="card-status card-type type-pro">Professional</span></div>
         </div>
         <div class="card-title">Tekton India</div>
         <div class="card-desc">Resin furniture brand with an interactive 3D product configurator — letting customers visualise custom pieces before ordering. Commerce meets craft.</div>
@@ -657,10 +767,10 @@ footer{border-top:1px solid var(--border);padding:2rem 0;margin-top:2rem}
         </div>
       </a>
 
-      <a href="https://arc-investments.vercel.app" target="_blank" rel="noopener" class="project-card">
+      <a href="https://arc-investments.vercel.app" target="_blank" rel="noopener" class="project-card" data-status="live" data-type="open" data-category="Finance &amp; trading" data-domain="arc-investments.vercel.app">
         <div class="card-top">
           <div class="card-icon">📈</div>
-          <span class="card-status status-open">Open Source</span>
+          <div class="card-badges"><span class="card-status status-live">Live</span><span class="card-status card-type type-open">Open source</span></div>
         </div>
         <div class="card-title">Arc Investments</div>
         <div class="card-desc">Professional-grade SET 100 stock analysis dashboard for the Thai stock market — real-time charting and analytics built on TradingView's lightweight-charts.</div>
@@ -672,10 +782,10 @@ footer{border-top:1px solid var(--border);padding:2rem 0;margin-top:2rem}
         </div>
       </a>
 
-      <a href="https://github.com/jagdeepvirdi/ResidualEdge" target="_blank" rel="noopener" class="project-card">
+      <a href="https://github.com/jagdeepvirdi/ResidualEdge" target="_blank" rel="noopener" class="project-card" data-status="released" data-type="open" data-category="Finance &amp; trading" data-domain="github.com">
         <div class="card-top">
           <div class="card-icon">💹</div>
-          <span class="card-status status-open">Open Source</span>
+          <div class="card-badges"><span class="card-status status-released">Released</span><span class="card-status card-type type-open">Open source</span></div>
         </div>
         <div class="card-title">ResidualEdge</div>
         <div class="card-desc">Multi-strategy quantitative research and trading system for NSE/BSE Indian equities — market-neutral paper strategy, live-capital compounder, and an intraday research backtester.</div>
@@ -687,13 +797,14 @@ footer{border-top:1px solid var(--border);padding:2rem 0;margin-top:2rem}
         </div>
       </a>
 
-      <a href="https://kitchen.jagdeepsinghvirdi.com" target="_blank" rel="noopener" class="project-card">
+      <a href="https://kitchen.jagdeepsinghvirdi.com" target="_blank" rel="noopener" class="project-card" data-status="live" data-type="personal" data-category="Web &amp; business sites" data-domain="kitchen.jagdeepsinghvirdi.com">
         <div class="card-top">
           <div class="card-icon">🍳</div>
-          <span class="card-status status-live">Live</span>
+          <div class="card-badges"><span class="card-status status-live">Live</span><span class="card-status card-type type-personal">Personal</span></div>
         </div>
         <div class="card-title">Jaggi's Kitchen</div>
         <div class="card-desc">Recipe blog for the home cooking I actually make. Recipes are written in Markdown and rendered as a fast, fully static Next.js site.</div>
+        <span class="domain-pill">kitchen.jagdeepsinghvirdi.com</span>
         <div class="card-tags">
           <span class="tag">Next.js</span>
           <span class="tag">React</span>
@@ -702,13 +813,14 @@ footer{border-top:1px solid var(--border);padding:2rem 0;margin-top:2rem}
         </div>
       </a>
 
-      <a href="https://reknit.jagdeepsinghvirdi.com" target="_blank" rel="noopener" class="project-card">
+      <a href="https://reknit.jagdeepsinghvirdi.com" target="_blank" rel="noopener" class="project-card" data-status="live" data-type="personal" data-category="Apps" data-featured="true" data-domain="reknit.jagdeepsinghvirdi.com">
         <div class="card-top">
           <div class="card-icon">🧶</div>
-          <span class="card-status status-live">Live</span>
+          <div class="card-badges"><span class="card-status status-live">Live</span><span class="card-status card-type type-personal">Personal</span></div>
         </div>
         <div class="card-title">Reknit</div>
         <div class="card-desc">Free, local-first habit tracker built on the habit loop. A missed day never breaks your streak. No account, no server, no analytics — everything lives in your browser and works offline as an installable PWA.</div>
+        <span class="domain-pill">reknit.jagdeepsinghvirdi.com</span>
         <div class="card-tags">
           <span class="tag">React</span>
           <span class="tag">TypeScript</span>
@@ -717,13 +829,14 @@ footer{border-top:1px solid var(--border);padding:2rem 0;margin-top:2rem}
         </div>
       </a>
 
-      <a href="https://mergepdf.jagdeepsinghvirdi.com" target="_blank" rel="noopener" class="project-card">
+      <a href="https://mergepdf.jagdeepsinghvirdi.com" target="_blank" rel="noopener" class="project-card" data-status="live" data-type="personal" data-category="Apps" data-domain="mergepdf.jagdeepsinghvirdi.com">
         <div class="card-top">
           <div class="card-icon">📎</div>
-          <span class="card-status status-live">Live</span>
+          <div class="card-badges"><span class="card-status status-live">Live</span><span class="card-status card-type type-personal">Personal</span></div>
         </div>
         <div class="card-title">merge-pdf</div>
         <div class="card-desc">Offline PDF merger that runs entirely in your browser. Drag to reorder files, pick page ranges per file, and download one combined PDF. Nothing is uploaded, stored or sent anywhere.</div>
+        <span class="domain-pill">mergepdf.jagdeepsinghvirdi.com</span>
         <div class="card-tags">
           <span class="tag">JavaScript</span>
           <span class="tag">pdf-lib</span>
@@ -732,13 +845,14 @@ footer{border-top:1px solid var(--border);padding:2rem 0;margin-top:2rem}
         </div>
       </a>
 
-      <a href="https://parichay.jagdeepsinghvirdi.com" target="_blank" rel="noopener" class="project-card">
+      <a href="https://parichay.jagdeepsinghvirdi.com" target="_blank" rel="noopener" class="project-card" data-status="live" data-type="personal" data-category="Apps" data-featured="true" data-domain="parichay.jagdeepsinghvirdi.com">
         <div class="card-top">
           <div class="card-icon">🪪</div>
-          <span class="card-status status-live">Live</span>
+          <div class="card-badges"><span class="card-status status-live">Live</span><span class="card-status card-type type-personal">Personal</span></div>
         </div>
         <div class="card-title">Parichay</div>
         <div class="card-desc">Local-first contact exchange. Build your card once, share only the fields you choose as a QR code, and scan others into groups. No account, no server, works offline as an installable PWA.</div>
+        <span class="domain-pill">parichay.jagdeepsinghvirdi.com</span>
         <div class="card-tags">
           <span class="tag">React</span>
           <span class="tag">TypeScript</span>
@@ -747,13 +861,14 @@ footer{border-top:1px solid var(--border);padding:2rem 0;margin-top:2rem}
         </div>
       </a>
 
-      <a href="https://trove.jagdeepsinghvirdi.com" target="_blank" rel="noopener" class="project-card">
+      <a href="https://trove.jagdeepsinghvirdi.com" target="_blank" rel="noopener" class="project-card" data-status="live" data-type="personal" data-category="Apps" data-featured="true" data-domain="trove.jagdeepsinghvirdi.com">
         <div class="card-top">
           <div class="card-icon">🎬</div>
-          <span class="card-status status-live">Live</span>
+          <div class="card-badges"><span class="card-status status-live">Live</span><span class="card-status card-type type-personal">Personal</span></div>
         </div>
         <div class="card-title">Trove</div>
         <div class="card-desc">Private catalog for movies, TV, videos, books and music. Track what you want to watch or read, who recommended it, and what you thought — with AI recommendations from your own library and shared lists for movie night.</div>
+        <span class="domain-pill">trove.jagdeepsinghvirdi.com</span>
         <div class="card-tags">
           <span class="tag">Next.js</span>
           <span class="tag">TypeScript</span>
@@ -762,10 +877,10 @@ footer{border-top:1px solid var(--border);padding:2rem 0;margin-top:2rem}
         </div>
       </a>
 
-      <div class="project-card">
+      <div class="project-card" data-status="private" data-type="personal" data-category="Finance &amp; trading" data-domain="">
         <div class="card-top">
           <div class="card-icon">🏠</div>
-          <span class="card-status status-live">In Development</span>
+          <div class="card-badges"><span class="card-status status-private">Private</span><span class="card-status card-type type-personal">Personal</span></div>
         </div>
         <div class="card-title">Ghar</div>
         <div class="card-desc">Household finance and investment tracker for two people across two countries. Each person sees full detail on their own finances and only totals for the other's — enforced in the database, not just the UI.</div>
@@ -777,10 +892,10 @@ footer{border-top:1px solid var(--border);padding:2rem 0;margin-top:2rem}
         </div>
       </div>
 
-      <a href="https://www.advancetech.co.th" target="_blank" rel="noopener" class="project-card">
+      <a href="https://www.advancetech.co.th" target="_blank" rel="noopener" class="project-card" data-status="live" data-type="pro" data-category="Web &amp; business sites" data-domain="www.advancetech.co.th">
         <div class="card-top">
           <div class="card-icon">🖧</div>
-          <span class="card-status status-pro">Professional</span>
+          <div class="card-badges"><span class="card-status status-live">Live</span><span class="card-status card-type type-pro">Professional</span></div>
         </div>
         <div class="card-title">Advance Tech Solutions</div>
         <div class="card-desc">Marketing website for a Bangkok-based IT infrastructure services company — services, solutions and maintenance, clients and about pages, with a contact form that emails enquiries straight to the team.</div>
@@ -793,6 +908,7 @@ footer{border-top:1px solid var(--border);padding:2rem 0;margin-top:2rem}
       </a>
 
     </div>
+    <button type="button" class="btn btn-ghost show-more" id="showMore" aria-expanded="false" hidden></button>
   </section>
 
   <!-- STACK -->
@@ -1014,6 +1130,151 @@ document.addEventListener('DOMContentLoaded', () => {
     tagInterval = setInterval(cycleTag, 2600);
   });
 });
+</script>
+
+<script>
+(function () {
+  var cards = Array.prototype.slice.call(document.querySelectorAll('#projects .project-card'));
+  var OWN = /(^|\.)jagdeepsinghvirdi\.com$/;
+  var FILTERS = [
+    { key: 'all',  label: 'All',         test: function () { return true; } },
+    { key: 'live', label: 'Live',        test: function (c) { return c.dataset.status === 'live'; } },
+    { key: 'open', label: 'Open Source', test: function (c) { return c.dataset.type === 'open'; } },
+    { key: 'pro',  label: 'Professional',test: function (c) { return c.dataset.type === 'pro'; } },
+    { key: 'dev',  label: 'In Dev',      test: function (c) { return c.dataset.status === 'dev'; } }
+  ];
+  var byKey = {};
+  FILTERS.forEach(function (f) { byKey[f.key] = f; });
+
+  // Open Source stat from data attributes
+  var statOpen = document.getElementById('statOpen');
+  if (statOpen) statOpen.textContent = cards.filter(byKey.open.test).length;
+
+  // Filter chips
+  var bar = document.getElementById('filterBar');
+  var statusEl = document.getElementById('filterStatus');
+  var chips = {};
+  FILTERS.forEach(function (f) {
+    var b = document.createElement('button');
+    b.type = 'button';
+    b.className = 'chip';
+    b.setAttribute('aria-pressed', 'false');
+    b.appendChild(document.createTextNode(f.label));
+    var n = document.createElement('span');
+    n.className = 'count';
+    n.textContent = cards.filter(f.test).length;
+    b.appendChild(n);
+    b.addEventListener('click', function () {
+      expanded = false;
+      apply(f.key);
+      history.replaceState(null, '', f.key === 'all' ? '#projects' : '#projects?filter=' + f.key);
+    });
+    chips[f.key] = b;
+    bar.appendChild(b);
+  });
+
+  var PREVIEW = 6;
+  var expanded = false;
+  var currentKey = 'all';
+  var featuredBox = document.getElementById('featured');
+  var featuredGrid = document.getElementById('featuredGrid');
+  var allHeading = document.getElementById('allHeading');
+  var moreBtn = document.getElementById('showMore');
+
+  // Keep the sticky filter bar just under the (sticky) nav
+  var navEl = document.querySelector('nav');
+  function setNavH() { document.documentElement.style.setProperty('--nav-h', navEl.offsetHeight + 'px'); }
+  setNavH();
+  window.addEventListener('resize', setNavH);
+
+  // Featured row: clones of cards flagged data-featured
+  var featured = cards.filter(function (c) { return c.dataset.featured === 'true'; });
+  featured.forEach(function (c) {
+    var k = c.cloneNode(true);
+    k.classList.add('featured');
+    featuredGrid.appendChild(k);
+  });
+
+  moreBtn.addEventListener('click', function () {
+    expanded = !expanded;
+    apply(currentKey);
+    if (!expanded) allHeading.scrollIntoView();
+  });
+
+  function apply(key) {
+    var f = byKey[key] || byKey.all;
+    currentKey = f.key;
+    // In the unfiltered view featured cards live in the Featured row, so skip them in the list
+    var inRow = f.key === 'all' && featured.length > 0;
+    var list = cards.filter(function (c) {
+      return f.test(c) && !(inRow && c.dataset.featured === 'true');
+    });
+    var shown = inRow ? featured.length : 0;
+    cards.forEach(function (c) { c.hidden = true; });
+    list.forEach(function (c, i) {
+      var vis = expanded || i < PREVIEW;
+      c.hidden = !vis;
+      if (vis) shown++;
+    });
+    featuredBox.hidden = !inRow;
+    allHeading.textContent = inRow ? 'More projects' : 'Projects';
+    if (list.length > PREVIEW) {
+      moreBtn.hidden = false;
+      moreBtn.textContent = expanded ? 'Show fewer' : 'Show all ' + list.length + ' projects';
+      moreBtn.setAttribute('aria-expanded', String(expanded));
+    } else {
+      moreBtn.hidden = true;
+    }
+    FILTERS.forEach(function (x) { chips[x.key].setAttribute('aria-pressed', String(x.key === f.key)); });
+    statusEl.textContent = 'Showing ' + shown + ' of ' + cards.length + ' projects';
+  }
+
+  function fromHash() {
+    var m = location.hash.match(/^#projects\?filter=(\w+)/);
+    return m && byKey[m[1]] ? m[1] : null;
+  }
+
+  apply(fromHash() || 'all');
+  if (location.hash.indexOf('#projects?') === 0) {
+    document.getElementById('projects').scrollIntoView();
+  }
+  window.addEventListener('hashchange', function () {
+    var k = fromHash();
+    apply(k || 'all');
+    if (k) document.getElementById('projects').scrollIntoView();
+  });
+
+  // Live apps strip: any card linking to *.jagdeepsinghvirdi.com
+  var row = document.getElementById('appsRow');
+  var tiles = 0;
+  cards.forEach(function (c) {
+    var host = c.dataset.domain;
+    if (c.tagName !== 'A' || !host || !OWN.test(host)) return;
+    var icon = c.querySelector('.card-icon').textContent;
+    var title = c.querySelector('.card-title').textContent;
+    var desc = c.querySelector('.card-desc').textContent.trim();
+    var m = desc.match(/^.*?[.!?](?=\s|$)/);
+
+    var a = document.createElement('a');
+    a.className = 'app-tile';
+    a.href = c.getAttribute('href');
+    a.target = '_blank';
+    a.rel = 'noopener';
+
+    var i = document.createElement('div'); i.className = 'card-icon'; i.textContent = icon;
+    var t = document.createElement('div'); t.className = 'card-title'; t.textContent = title;
+    var p = document.createElement('div'); p.className = 'app-pitch'; p.textContent = m ? m[0] : desc;
+    var d = document.createElement('span'); d.className = 'domain-pill';
+    var dot = host.indexOf('.');
+    d.appendChild(document.createTextNode(host.slice(0, dot)));
+    var sfx = document.createElement('span'); sfx.className = 'pill-suffix'; sfx.textContent = host.slice(dot);
+    d.appendChild(sfx);
+    a.appendChild(i); a.appendChild(t); a.appendChild(p); a.appendChild(d);
+    row.appendChild(a);
+    tiles++;
+  });
+  if (tiles) document.getElementById('apps').hidden = false;
+})();
 </script>
 
 </body>
