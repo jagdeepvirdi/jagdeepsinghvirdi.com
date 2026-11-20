@@ -1,1288 +1,295 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="description" content="Jagdeep Singh Virdi — Senior Telecom Billing Consultant & Independent Builder. 20+ years in telecom BSS, open-source tools, and local-first AI. Based in Bangkok, Thailand.">
-<meta name="keywords" content="Jagdeep Singh Virdi, telecom billing, BSS, Flutter, Python, PostgreSQL, FlowForge, PlayCru, Memex, DevBrain, Orbitly, Bangkok">
-<meta property="og:title" content="Jagdeep Singh Virdi">
-<meta property="og:description" content="Senior Telecom Billing Consultant & Independent Builder. 20+ years across Asia, Middle East, and Europe.">
-<meta property="og:url" content="https://jagdeepsinghvirdi.com">
-<meta property="og:type" content="website">
-<title>Jagdeep Singh Virdi</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=DM+Mono:wght@300;400;500&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet">
-<style>
-*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
-:root{
-  --bg:#080C10;
-  --surface:#0D1218;
-  --surface2:#111820;
-  --border:#1E2A36;
-  --border2:#253444;
-  --accent:#00D9A3;
-  --accent2:#0099FF;
-  --text:#E8EDF2;
-  --text2:#8A9BB0;
-  --text3:#4A5F74;
-  --font-display:'Syne',sans-serif;
-  --font-mono:'DM Mono',monospace;
-  --font-body:'DM Sans',sans-serif;
-}
-html{scroll-behavior:smooth}
-body{
-  background:var(--bg);
-  color:var(--text);
-  font-family:var(--font-body);
-  font-size:16px;
-  line-height:1.7;
-  -webkit-font-smoothing:antialiased;
-  overflow-x:hidden;
-}
-body::before{
-  content:'';
-  position:fixed;
-  inset:0;
-  background-image:
-    linear-gradient(var(--border) 1px, transparent 1px),
-    linear-gradient(90deg, var(--border) 1px, transparent 1px);
-  background-size:60px 60px;
-  opacity:0.3;
-  pointer-events:none;
-  z-index:0;
-}
-.orb{position:fixed;border-radius:50%;filter:blur(120px);opacity:0.07;pointer-events:none;z-index:0}
-.orb1{width:600px;height:600px;background:var(--accent);top:-200px;right:-100px}
-.orb2{width:400px;height:400px;background:var(--accent2);bottom:0;left:-100px}
-.container{max-width:900px;margin:0 auto;padding:0 2rem;position:relative;z-index:1}
-
-/* NAV */
-nav{
-  padding:1.5rem 0;
-  border-bottom:1px solid var(--border);
-  position:sticky;top:0;
-  background:rgba(8,12,16,0.85);
-  backdrop-filter:blur(12px);
-  -webkit-backdrop-filter:blur(12px);
-  z-index:100;
-}
-.nav-inner{display:flex;align-items:center;justify-content:space-between}
-.nav-logo{
-  display:flex;
-  align-items:center;
-  gap:10px;
-  font-family:var(--font-display);
-  color:var(--text);
-  text-decoration:none;
-  cursor:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='28' height='28'><circle cx='14' cy='14' r='5' fill='%2300D9A3' fill-opacity='0.6'/><circle cx='14' cy='14' r='11' fill='%2300D9A3' fill-opacity='0.18'/></svg>") 14 14, pointer;
-}
-.logo-mark{display:inline-flex;align-items:center;gap:3px;color:var(--accent)}
-.logo-bracket{
-  width:7px;height:22px;
-  filter:drop-shadow(0 0 5px rgba(0,217,163,0.35));
-  transition:filter 0.4s ease;
-}
-.nav-logo:hover .logo-bracket{filter:drop-shadow(0 0 12px rgba(0,217,163,0.85)) drop-shadow(0 0 26px rgba(0,217,163,0.5))}
-.logo-word{
-  font-size:17px;font-weight:800;letter-spacing:-0.02em;color:var(--text);
-  display:inline-block;
-  transition:transform 0.3s cubic-bezier(0.22,1,0.36,1);
-}
-.nav-logo:hover .logo-word{transform:translateY(-2px)}
-.logo-tag{
-  position:relative;
-  overflow:hidden;
-  height:14px;
-  min-width:88px;
-  padding-left:10px;
-  margin-left:2px;
-  border-left:1px solid var(--border2);
-}
-.logo-tag-text .dot{color:var(--accent);display:inline-block;transform-origin:center}
-@keyframes dotPulse{
-  0%{transform:scale(1);opacity:1}
-  50%{transform:scale(1.8);opacity:0.5}
-  100%{transform:scale(1);opacity:1}
-}
-.logo-tag-text .dot.pulse{animation:dotPulse 0.5s ease}
-.logo-tag-text{
-  display:block;
-  font-family:var(--font-mono);
-  font-size:10px;
-  font-weight:400;
-  letter-spacing:0.1em;
-  text-transform:uppercase;
-  color:var(--text2);
-  white-space:nowrap;
-  line-height:14px;
-  opacity:0;
-  transform:translateY(-8px);
-}
-.nav-links{display:flex;gap:2rem;list-style:none}
-.nav-links a{
-  font-family:var(--font-mono);
-  font-size:12px;
-  color:var(--text2);
-  text-decoration:none;
-  letter-spacing:0.08em;
-  transition:color 0.2s;
-}
-.nav-links a:hover{color:var(--accent)}
-
-/* HERO */
-.hero{padding:7rem 0 5rem}
-.hero-label{
-  font-family:var(--font-mono);
-  font-size:11px;
-  letter-spacing:0.2em;
-  color:var(--accent);
-  text-transform:uppercase;
-  margin-bottom:1.5rem;
-  display:flex;align-items:center;gap:8px;
-}
-.hero-label::before{content:'';width:24px;height:1px;background:var(--accent)}
-.hero-name{
-  font-family:var(--font-display);
-  font-size:clamp(3rem,8vw,5.5rem);
-  font-weight:800;
-  line-height:1.0;
-  letter-spacing:-0.02em;
-  margin-bottom:0.5rem;
-}
-.hero-name .line2{
-  color:transparent;
-  -webkit-text-stroke:1px var(--text3);
-}
-.hero-role{
-  font-family:var(--font-mono);
-  font-size:14px;
-  color:var(--accent);
-  margin-bottom:1.5rem;
-  letter-spacing:0.05em;
-}
-.hero-bio{
-  max-width:560px;
-  color:var(--text2);
-  font-size:16px;
-  line-height:1.8;
-  margin-bottom:2.5rem;
-  font-weight:300;
-}
-.hero-bio strong{color:var(--text);font-weight:500}
-.hero-links{display:flex;gap:12px;flex-wrap:wrap}
-.btn{
-  display:inline-flex;align-items:center;gap:8px;
-  padding:10px 20px;
-  border-radius:6px;
-  font-family:var(--font-mono);
-  font-size:12px;
-  letter-spacing:0.08em;
-  text-decoration:none;
-  transition:all 0.2s;
-  cursor:pointer;
-  border:none;
-}
-.btn-primary{background:var(--accent);color:#080C10;font-weight:500}
-.btn-primary:hover{background:#00f0b5;transform:translateY(-1px)}
-.btn-ghost{background:transparent;color:var(--text2);border:1px solid var(--border2)}
-.btn-ghost:hover{border-color:var(--accent);color:var(--accent)}
-.btn svg{width:14px;height:14px;flex-shrink:0}
-
-/* STATS BAR */
-.stats-bar{
-  display:flex;
-  border:1px solid var(--border);
-  border-radius:10px;
-  overflow:hidden;
-  margin:4rem 0;
-  background:var(--surface);
-}
-.stat-item{flex:1;padding:1.5rem;border-right:1px solid var(--border);text-align:center}
-.stat-item:last-child{border-right:none}
-.stat-num{
-  font-family:var(--font-display);
-  font-size:2rem;
-  font-weight:800;
-  color:var(--accent);
-  line-height:1;
-  display:block;
-  margin-bottom:4px;
-}
-.stat-label{
-  font-family:var(--font-mono);
-  font-size:10px;
-  color:var(--text3);
-  letter-spacing:0.12em;
-  text-transform:uppercase;
-}
-
-/* SECTIONS */
-section{padding:5rem 0}
-.section-label{
-  font-family:var(--font-mono);
-  font-size:11px;
-  color:var(--accent);
-  letter-spacing:0.2em;
-  text-transform:uppercase;
-  margin-bottom:0.5rem;
-  display:flex;align-items:center;gap:8px;
-}
-.section-label::before{content:'';width:16px;height:1px;background:var(--accent)}
-.section-title{
-  font-family:var(--font-display);
-  font-size:2rem;
-  font-weight:700;
-  margin-bottom:3rem;
-  letter-spacing:-0.01em;
-}
-
-/* PROJECT CARDS */
-.projects-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px}
-.project-card{
-  background:var(--surface);
-  border:1px solid var(--border);
-  border-radius:12px;
-  padding:1.5rem;
-  text-decoration:none;
-  transition:all 0.25s;
-  position:relative;
-  overflow:hidden;
-  display:block;
-}
-.project-card::before{
-  content:'';
-  position:absolute;
-  top:0;left:0;right:0;
-  height:2px;
-  background:linear-gradient(90deg,var(--accent),var(--accent2));
-  transform:scaleX(0);
-  transform-origin:left;
-  transition:transform 0.3s;
-}
-.project-card:hover{border-color:var(--border2);transform:translateY(-2px)}
-.project-card:hover::before{transform:scaleX(1)}
-.project-card.ghost{opacity:0.45;pointer-events:none}
-.card-top{display:flex;align-items:flex-start;justify-content:space-between;margin-bottom:1rem}
-.card-icon{
-  width:40px;height:40px;border-radius:8px;
-  background:var(--surface2);
-  border:1px solid var(--border2);
-  display:flex;align-items:center;justify-content:center;
-  font-size:18px;
-}
-.card-status{
-  font-family:var(--font-mono);
-  font-size:10px;
-  letter-spacing:0.1em;
-  padding:3px 8px;
-  border-radius:4px;
-  text-transform:uppercase;
-}
-.status-live{background:rgba(0,217,163,0.1);color:var(--accent);border:1px solid rgba(0,217,163,0.2)}
-.status-open{background:rgba(0,153,255,0.1);color:var(--accent2);border:1px solid rgba(0,153,255,0.2)}
-.status-pro{background:rgba(138,155,176,0.1);color:var(--text2);border:1px solid var(--border2)}
-.status-soon{background:rgba(74,95,116,0.1);color:var(--text3);border:1px solid var(--border)}
-.status-dev{background:rgba(245,165,36,0.1);color:#F5A524;border:1px solid rgba(245,165,36,0.25)}
-.status-private{background:rgba(74,95,116,0.1);color:var(--text3);border:1px solid var(--border)}
-.status-released{background:rgba(138,155,176,0.1);color:var(--text2);border:1px solid var(--border2)}
-.card-badges{display:flex;flex-wrap:wrap;gap:6px;justify-content:flex-end}
-.card-type{background:transparent;color:var(--text3);border:1px solid var(--border)}
-.type-open{color:var(--accent2);border-color:rgba(0,153,255,0.3)}
-.type-pro{color:var(--text2);border-color:var(--border2)}
-.domain-pill{
-  display:inline-block;
-  font-family:var(--font-mono);
-  font-size:10px;
-  letter-spacing:0.05em;
-  padding:2px 8px;
-  border-radius:4px;
-  color:var(--accent);
-  background:rgba(0,217,163,0.08);
-  border:1px solid rgba(0,217,163,0.2);
-  margin-bottom:1rem;
-}
-.project-card[hidden]{display:none}
-
-/* FILTER CHIPS */
-#projects .section-title{margin-bottom:1.5rem}
-.filter-bar{display:flex;flex-wrap:wrap;gap:8px}
-.chip{
-  font-family:var(--font-mono);
-  font-size:12px;
-  padding:7px 14px;
-  border-radius:999px;
-  background:var(--surface);
-  color:var(--text2);
-  border:1px solid var(--border);
-  cursor:pointer;
-  transition:all 0.2s;
-}
-.chip:hover{border-color:var(--accent);color:var(--accent)}
-.chip[aria-pressed="true"]{background:rgba(0,217,163,0.1);color:var(--accent);border-color:rgba(0,217,163,0.35)}
-.chip:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
-.chip .count{opacity:0.6;margin-left:6px}
-.filter-status{font-family:var(--font-mono);font-size:11px;color:var(--text3);margin:10px 0}
-.filter-wrap{
-  position:sticky;top:var(--nav-h,78px);z-index:50;
-  background:rgba(8,12,16,0.92);
-  backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);
-  padding:10px 0 1px;margin-bottom:1rem;
-}
-.subhead{font-family:var(--font-mono);font-size:11px;letter-spacing:0.15em;text-transform:uppercase;color:var(--text3);margin:0 0 12px;scroll-margin-top:calc(var(--nav-h,78px) + 80px)}
-#featured{margin-bottom:2.5rem}
-#featured[hidden]{display:none}
-.project-card.featured{padding:1.75rem;border-color:rgba(0,217,163,0.22);background:linear-gradient(160deg,rgba(0,217,163,0.05),var(--surface) 60%)}
-.project-card.featured .card-title{font-size:1.3rem}
-.project-card.featured a.project-card .card-desc,
-a.project-card.featured .card-desc{display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden}
-
-/* COMPACT CARDS (main list) */
-.projects-grid.compact .project-card{padding:1.25rem}
-.projects-grid.compact .card-top{margin-bottom:0.75rem}
-.projects-grid.compact .card-desc{margin-bottom:0.75rem}
-.projects-grid.compact .domain-pill{margin-bottom:0.75rem}
-/* clamp only cards that link out; unlinked cards have nowhere else to show the full text */
-.projects-grid.compact a.project-card .card-desc{display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
-.projects-grid.compact .card-tags .tag:nth-child(n+4){display:none}
-.show-more{display:flex;margin:1.5rem auto 0;cursor:pointer}
-.show-more[hidden]{display:none}
-
-/* LIVE APPS STRIP */
-.apps-section{padding:0}
-.apps-section + #projects{padding-top:3rem}
-.apps-section .section-title{margin-bottom:1.5rem}
-.apps-row{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:12px}
-.apps-row{scrollbar-width:thin;scrollbar-color:var(--border2) transparent}
-.app-tile{
-  display:flex;flex-direction:column;gap:8px;
-  background:var(--surface);
-  border:1px solid var(--border);
-  border-radius:12px;
-  padding:1rem;
-  text-decoration:none;
-  transition:all 0.25s;
-}
-.app-tile:hover{border-color:var(--accent);transform:translateY(-2px)}
-.app-tile:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
-.app-tile .card-title{margin:0}
-.app-pitch{
-  font-size:13px;color:var(--text2);line-height:1.5;font-weight:300;
-  display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden;
-}
-.app-tile .domain-pill{margin:auto 0 0;align-self:flex-start;max-width:100%;overflow-wrap:anywhere;line-height:1.4;padding:3px 8px}
-.pill-suffix{display:block;opacity:0.65;font-size:8px;letter-spacing:0}
-.card-title{
-  font-family:var(--font-display);
-  font-size:1.1rem;
-  font-weight:700;
-  color:var(--text);
-  margin-bottom:0.4rem;
-}
-.card-desc{font-size:13px;color:var(--text2);line-height:1.6;margin-bottom:1rem;font-weight:300}
-.card-tags{display:flex;flex-wrap:wrap;gap:6px}
-.tag{
-  font-family:var(--font-mono);
-  font-size:10px;
-  padding:3px 8px;
-  border-radius:4px;
-  background:var(--surface2);
-  color:var(--text3);
-  border:1px solid var(--border);
-  letter-spacing:0.05em;
-}
-
-/* STACK */
-.stack-grid{display:flex;flex-wrap:wrap;gap:10px}
-.stack-pill{
-  font-family:var(--font-mono);
-  font-size:12px;
-  padding:8px 16px;
-  border-radius:6px;
-  background:var(--surface);
-  color:var(--text2);
-  border:1px solid var(--border);
-  letter-spacing:0.05em;
-  transition:all 0.2s;
-}
-.stack-pill:hover{border-color:var(--accent);color:var(--accent)}
-
-/* TIMELINE */
-.timeline{position:relative;padding-left:2rem}
-.timeline::before{
-  content:'';
-  position:absolute;
-  left:0;top:8px;bottom:0;
-  width:1px;
-  background:linear-gradient(180deg,var(--accent),transparent);
-}
-.tl-item{position:relative;margin-bottom:2.5rem}
-.tl-dot{
-  position:absolute;
-  left:-2.35rem;top:6px;
-  width:8px;height:8px;
-  border-radius:50%;
-  background:var(--accent);
-  border:2px solid var(--bg);
-}
-.tl-period{
-  font-family:var(--font-mono);
-  font-size:10px;
-  color:var(--text3);
-  letter-spacing:0.1em;
-  text-transform:uppercase;
-  margin-bottom:4px;
-}
-.tl-role{
-  font-family:var(--font-display);
-  font-size:1rem;
-  font-weight:600;
-  color:var(--text);
-  margin-bottom:2px;
-}
-.tl-company{font-size:13px;color:var(--accent);font-weight:400;margin-bottom:6px}
-.tl-desc{font-size:13px;color:var(--text2);line-height:1.6;font-weight:300}
-
-/* CERTS */
-.certs-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
-.cert-card{
-  background:var(--surface);
-  border:1px solid var(--border);
-  border-radius:10px;
-  padding:1.25rem 1.5rem;
-  text-decoration:none;
-  transition:all 0.2s;
-  display:flex;
-  flex-direction:column;
-  gap:4px;
-}
-.cert-card:hover{border-color:var(--border2);transform:translateY(-2px)}
-.cert-provider{
-  font-family:var(--font-mono);
-  font-size:10px;
-  color:var(--accent);
-  letter-spacing:0.12em;
-  text-transform:uppercase;
-  margin-bottom:4px;
-}
-.cert-name{
-  font-family:var(--font-display);
-  font-size:0.95rem;
-  font-weight:600;
-  color:var(--text);
-  line-height:1.3;
-  flex:1;
-}
-.cert-verify{
-  font-family:var(--font-mono);
-  font-size:10px;
-  color:var(--text3);
-  letter-spacing:0.08em;
-  margin-top:8px;
-  transition:color 0.2s;
-}
-.cert-card:hover .cert-verify{color:var(--accent)}
-
-/* CREATIVE */
-.creative-row{display:flex;gap:12px}
-.creative-card{
-  flex:1;
-  background:var(--surface);
-  border:1px solid var(--border);
-  border-radius:10px;
-  padding:1.25rem;
-  text-decoration:none;
-  transition:all 0.2s;
-  display:flex;align-items:center;gap:12px;
-}
-.creative-card:hover{border-color:var(--border2)}
-.creative-icon{font-size:24px}
-.creative-label{font-family:var(--font-mono);font-size:11px;color:var(--text3);letter-spacing:0.08em;text-transform:uppercase;margin-bottom:2px}
-.creative-name{font-size:14px;font-weight:500;color:var(--text2)}
-
-/* FOOTER */
-footer{border-top:1px solid var(--border);padding:2rem 0;margin-top:2rem}
-.footer-inner{display:flex;align-items:center;justify-content:space-between}
-.footer-left{font-family:var(--font-mono);font-size:11px;color:var(--text3)}
-.footer-credit{font-family:var(--font-mono);font-size:11px;color:var(--text3)}
-.footer-credit a{color:var(--text3);text-decoration:none;transition:color 0.2s}
-.footer-credit a:hover{color:var(--accent)}
-
-/* ANIMATIONS */
-@keyframes fadeUp{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
-.hero{animation:fadeUp 0.7s ease both}
-.stats-bar{animation:fadeUp 0.7s 0.1s ease both}
-
-/* RESPONSIVE */
-@media(max-width:640px){
-  .projects-grid{grid-template-columns:1fr}
-  .filter-wrap{position:static;background:none;backdrop-filter:none;-webkit-backdrop-filter:none;padding:0}
-  .apps-row{display:flex;overflow-x:auto;scroll-snap-type:x mandatory;padding-bottom:8px;-webkit-overflow-scrolling:touch}
-  .app-tile{flex:0 0 72%;scroll-snap-align:start}
-  .stats-bar{flex-direction:column}
-  .stat-item{border-right:none;border-bottom:1px solid var(--border)}
-  .stat-item:last-child{border-bottom:none}
-  .certs-grid{grid-template-columns:1fr}
-  .creative-row{flex-direction:column}
-  .nav-links{display:none}
-  .logo-tag{display:none}
-  .footer-inner{flex-direction:column;gap:8px;text-align:center}
-  .hero{padding:4rem 0 3rem}
-  section{padding:3rem 0}
-}
-</style>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#080d12">
+  <meta name="color-scheme" content="dark">
+  <title>Jagdeep Singh Virdi — Technology Consultant & Independent Builder</title>
+  <meta name="description" content="Jagdeep Singh Virdi is a technology consultant and independent builder with 20+ years across telecom BSS, charging and billing systems, enterprise engineering and independent software products. Based in Bangkok, Thailand.">
+  <meta name="keywords" content="Jagdeep Singh Virdi, telecom billing consultant, telecom BSS, charging systems, enterprise architecture, software engineer, independent builder, Bangkok">
+  <link rel="canonical" href="https://jagdeepsinghvirdi.com/">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Jagdeep Singh Virdi — Technology Consultant & Independent Builder">
+  <meta property="og:description" content="20+ years building and evolving enterprise telecom systems. Now creating independent software products, too.">
+  <meta property="og:url" content="https://jagdeepsinghvirdi.com/">
+  <meta property="og:image" content="https://jagdeepsinghvirdi.com/og-image.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Jagdeep Singh Virdi">
+  <meta name="twitter:description" content="Technology Consultant & Independent Builder">
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=DM+Sans:wght@400;500;600;700&family=Sora:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <script type="application/ld+json">
+  {
+    "@context":"https://schema.org",
+    "@type":"Person",
+    "name":"Jagdeep Singh Virdi",
+    "url":"https://jagdeepsinghvirdi.com/",
+    "jobTitle":"Technology Consultant & Independent Builder",
+    "address":{"@type":"PostalAddress","addressLocality":"Bangkok","addressCountry":"TH"},
+    "sameAs":["https://www.linkedin.com/in/jagdeepvirdi/","https://github.com/jagdeepvirdi"]
+  }
+  </script>
+  <style>
+    :root{color-scheme:dark;--bg:#080d12;--bg-soft:#0b1219;--surface:#101922;--surface-2:#131f29;--line:#20303d;--line-hi:#304454;--text:#edf4f7;--muted:#9aabb6;--dim:#637783;--accent:#5ce1e6;--accent-soft:rgba(92,225,230,.10);--blue:#8cb8ff;--display:'Sora',sans-serif;--body:'DM Sans',sans-serif;--mono:'DM Mono',monospace;--max:1180px}
+    *{box-sizing:border-box}html{scroll-behavior:smooth;scroll-padding-top:90px}body{margin:0;background:var(--bg);color:var(--text);font:16px/1.7 var(--body);-webkit-font-smoothing:antialiased;overflow-x:hidden}
+    body:before{content:"";position:fixed;inset:0;z-index:-2;pointer-events:none;background-image:linear-gradient(rgba(92,225,230,.035) 1px,transparent 1px),linear-gradient(90deg,rgba(92,225,230,.035) 1px,transparent 1px);background-size:64px 64px;mask-image:linear-gradient(to bottom,black,transparent 78%)}
+    body:after{content:"";position:fixed;width:620px;height:620px;right:-250px;top:-280px;border-radius:50%;background:rgba(92,225,230,.09);filter:blur(120px);z-index:-1;pointer-events:none}
+    a{color:inherit}button{font:inherit}.wrap{width:min(var(--max),calc(100% - 56px));margin-inline:auto}.mono,.eyebrow,.nav-links,.meta,.tag,.status,.filter-btn,.footer-meta{font-family:var(--mono)}
+    .skip{position:absolute;left:16px;top:-60px;background:var(--accent);color:#061014;padding:10px 14px;border-radius:6px;z-index:999}.skip:focus{top:12px}
+    .site-header{position:sticky;top:0;z-index:100;border-bottom:1px solid rgba(48,68,84,.65);background:rgba(8,13,18,.82);backdrop-filter:blur(18px)}
+    .nav{height:76px;display:flex;align-items:center;justify-content:space-between;gap:28px}.brand{display:inline-flex;align-items:center;gap:12px;text-decoration:none;min-width:max-content}.brand-mark{display:inline-flex;align-items:center;gap:5px;font:800 23px/1 var(--display);letter-spacing:-1.8px}.brand-mark .bracket{color:var(--accent);font-weight:500}.brand-tag{border-left:1px solid var(--line-hi);padding-left:12px;color:var(--muted);font:11px/1.3 var(--mono);letter-spacing:.08em;text-transform:uppercase}
+    .nav-links{display:flex;align-items:center;gap:27px;list-style:none;margin:0;padding:0}.nav-links a{font-size:11px;letter-spacing:.06em;color:var(--muted);text-decoration:none;transition:color .2s}.nav-links a:hover,.nav-links a:focus-visible{color:var(--accent)}
+    .nav-cta,.button{display:inline-flex;align-items:center;justify-content:center;gap:10px;padding:11px 17px;border:1px solid var(--accent);border-radius:5px;background:var(--accent);color:#061014;text-decoration:none;font:500 12px var(--mono);letter-spacing:.03em;transition:transform .2s,background .2s,border-color .2s}.nav-cta:hover,.button:hover{transform:translateY(-2px);background:#8af0f2;border-color:#8af0f2}.button.secondary{background:transparent;color:var(--text);border-color:var(--line-hi)}.button.secondary:hover{color:var(--accent);border-color:var(--accent);background:var(--accent-soft)}
+    .menu-toggle{display:none;border:1px solid var(--line-hi);background:transparent;color:var(--text);border-radius:5px;width:42px;height:42px;cursor:pointer}
+    .hero{padding:112px 0 92px;display:grid;grid-template-columns:minmax(0,1.2fr) minmax(300px,.8fr);gap:64px;align-items:center;min-height:610px}
+    .eyebrow{display:flex;align-items:center;gap:11px;color:var(--accent);font-size:10px;letter-spacing:.17em;text-transform:uppercase}.eyebrow:before{content:"";width:25px;height:1px;background:var(--accent)}
+    h1,h2,h3,p{margin-top:0}.hero h1{font:700 clamp(48px,6.2vw,78px)/1.08 var(--display);letter-spacing:-.065em;margin:23px 0 18px;max-width:740px}.hero h1 .outline{color:transparent;-webkit-text-stroke:1px #8296a2}.hero-role{font:500 13px/1.7 var(--mono);letter-spacing:.025em;color:var(--accent);margin-bottom:22px}.hero-copy{max-width:650px;color:var(--muted);font-size:17px;line-height:1.85;margin-bottom:29px}.hero-copy strong{color:var(--text);font-weight:600}.hero-actions{display:flex;gap:12px;flex-wrap:wrap}.hero-meta{display:flex;gap:20px;flex-wrap:wrap;margin-top:36px;color:var(--dim);font:10px var(--mono);letter-spacing:.1em;text-transform:uppercase}.hero-meta span{display:flex;align-items:center;gap:8px}.hero-meta span:before{content:"";width:5px;height:5px;border-radius:50%;background:var(--accent)}
+    .hero-panel{position:relative;border:1px solid var(--line);border-radius:10px;background:linear-gradient(145deg,rgba(19,31,41,.96),rgba(10,17,23,.96));padding:25px;box-shadow:0 24px 80px rgba(0,0,0,.25);overflow:hidden}.hero-panel:after{content:"";position:absolute;width:200px;height:200px;right:-110px;top:-110px;border:1px solid rgba(92,225,230,.2);border-radius:50%;box-shadow:0 0 0 25px rgba(92,225,230,.025),0 0 0 50px rgba(92,225,230,.02)}
+    .panel-top,.panel-bottom{display:flex;align-items:center;justify-content:space-between;gap:14px;color:var(--dim);font:10px var(--mono);letter-spacing:.12em;text-transform:uppercase}.live-dot{color:var(--accent)}.panel-title{font:600 29px/1.25 var(--display);letter-spacing:-.04em;margin:42px 0 12px}.panel-sub{color:var(--muted);font-size:13px;margin-bottom:25px}.panel-rule{height:1px;background:var(--line);margin:22px 0}.build-list{display:grid;gap:16px}.build-row{display:grid;grid-template-columns:32px 1fr;gap:10px;align-items:start}.build-num{color:var(--accent);font:11px var(--mono);padding-top:3px}.build-row strong{display:block;font:500 13px var(--display);margin-bottom:3px}.build-row small{color:var(--dim);font-size:11px}.panel-bottom{margin-top:31px}
+    .stats{display:grid;grid-template-columns:repeat(4,1fr);border:1px solid var(--line);border-radius:8px;background:rgba(16,25,34,.7);margin-bottom:30px}.stat{padding:22px 24px;border-right:1px solid var(--line)}.stat:last-child{border:0}.stat strong{display:block;color:var(--accent);font:700 27px var(--display);letter-spacing:-.04em}.stat span{color:var(--dim);font:10px var(--mono);letter-spacing:.1em;text-transform:uppercase}
+    .section{padding:94px 0;border-top:1px solid rgba(32,48,61,.8)}.section-head{display:flex;align-items:end;justify-content:space-between;gap:28px;margin-bottom:36px}.section-title{font:600 clamp(30px,4vw,45px)/1.2 var(--display);letter-spacing:-.055em;margin:12px 0 0}.section-note{max-width:370px;color:var(--muted);font-size:13px;margin:0}
+    .featured-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-bottom:38px}.feature-card{position:relative;min-height:245px;display:flex;flex-direction:column;justify-content:space-between;padding:23px;border:1px solid var(--line);border-radius:8px;background:linear-gradient(155deg,rgba(19,31,41,.96),rgba(10,17,23,.94));text-decoration:none;overflow:hidden;transition:transform .25s,border-color .25s}.feature-card:before{content:"";position:absolute;inset:0 auto 0 0;width:2px;background:var(--accent);transform:scaleY(0);transform-origin:bottom;transition:transform .3s}.feature-card:hover{transform:translateY(-4px);border-color:var(--line-hi)}.feature-card:hover:before{transform:scaleY(1)}.feature-top{display:flex;align-items:center;justify-content:space-between}.feature-icon{display:grid;place-items:center;width:39px;height:39px;border:1px solid var(--line-hi);border-radius:7px;color:var(--accent);font:600 16px var(--display)}.status{font-size:9px;letter-spacing:.09em;text-transform:uppercase;color:var(--accent);border:1px solid rgba(92,225,230,.25);background:var(--accent-soft);border-radius:3px;padding:4px 7px}.feature-card h3{font:600 23px var(--display);letter-spacing:-.04em;margin:27px 0 8px}.feature-card p{font-size:12px;line-height:1.7;color:var(--muted);margin:0;max-width:330px}.feature-link{font:10px var(--mono);color:var(--accent);margin-top:18px}
+    .work-tools{display:flex;align-items:center;justify-content:space-between;gap:16px;margin-bottom:16px}.filter-list{display:flex;flex-wrap:wrap;gap:8px}.filter-btn{border:1px solid var(--line);background:transparent;color:var(--muted);padding:7px 12px;border-radius:4px;font-size:10px;cursor:pointer;transition:all .2s}.filter-btn:hover,.filter-btn[aria-pressed=true]{border-color:var(--accent);color:var(--accent);background:var(--accent-soft)}.result-count{font:10px var(--mono);color:var(--dim);white-space:nowrap}.project-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:13px}.project-card{display:flex;flex-direction:column;min-height:225px;padding:20px;border:1px solid var(--line);border-radius:7px;background:rgba(16,25,34,.72);text-decoration:none;transition:transform .2s,border-color .2s,background .2s}.project-card:hover{transform:translateY(-3px);border-color:var(--line-hi);background:var(--surface)}.project-card[hidden]{display:none}.project-top{display:flex;align-items:center;justify-content:space-between;gap:12px}.project-type{font:9px var(--mono);color:var(--dim);letter-spacing:.12em;text-transform:uppercase}.project-card h3{font:600 17px var(--display);letter-spacing:-.035em;margin:19px 0 8px}.project-card p{font-size:12px;line-height:1.7;color:var(--muted);margin:0 0 17px}.tags{display:flex;flex-wrap:wrap;gap:5px;margin-top:auto}.tag{font-size:9px;color:#91a5b0;background:rgba(255,255,255,.025);border:1px solid var(--line);border-radius:3px;padding:3px 6px}
+    .two-col{display:grid;grid-template-columns:.85fr 1.15fr;gap:80px}.expertise-list{border-top:1px solid var(--line)}.expertise-item{display:grid;grid-template-columns:35px 1fr;gap:14px;padding:19px 0;border-bottom:1px solid var(--line)}.expertise-item .num{font:11px var(--mono);color:var(--accent);padding-top:4px}.expertise-item h3{font:500 16px var(--display);margin:0 0 5px}.expertise-item p{font-size:12px;color:var(--muted);margin:0;max-width:600px}
+    .about-copy{color:var(--muted);font-size:15px;line-height:1.9}.about-copy p{margin:0 0 17px}.about-copy strong{color:var(--text);font-weight:600}.about-note{display:inline-flex;align-items:center;gap:9px;color:var(--accent);font:10px var(--mono);letter-spacing:.08em;text-transform:uppercase;margin-top:8px}
+    .stack-wrap{display:flex;flex-wrap:wrap;gap:9px}.stack-pill{padding:8px 12px;border:1px solid var(--line);border-radius:4px;color:#b0bec6;background:rgba(16,25,34,.65);font:10px var(--mono);letter-spacing:.02em}
+    .timeline{position:relative;border-left:1px solid var(--line-hi);margin-left:7px;padding-left:30px}.timeline-item{position:relative;padding:0 0 31px}.timeline-item:last-child{padding-bottom:0}.timeline-item:before{content:"";position:absolute;left:-35px;top:7px;width:9px;height:9px;border-radius:50%;background:var(--accent);box-shadow:0 0 0 4px var(--bg)}.period{font:10px var(--mono);color:var(--dim);letter-spacing:.08em;text-transform:uppercase;margin-bottom:6px}.timeline-item h3{font:600 16px var(--display);margin:0 0 3px}.company{color:var(--accent);font-size:12px;margin-bottom:7px}.timeline-item p{font-size:12px;color:var(--muted);margin:0;max-width:760px}
+    .cert-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:11px}.cert{display:flex;flex-direction:column;gap:8px;padding:16px;border:1px solid var(--line);border-radius:6px;text-decoration:none;background:rgba(16,25,34,.6);transition:border-color .2s}.cert:hover{border-color:var(--accent)}.cert small{font:9px var(--mono);color:var(--accent);letter-spacing:.1em;text-transform:uppercase}.cert strong{font:500 13px/1.45 var(--display)}.cert span{font:9px var(--mono);color:var(--dim);margin-top:auto;padding-top:10px}
+    .creative-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}.creative{display:flex;align-items:center;gap:14px;padding:17px;border:1px solid var(--line);border-radius:6px;text-decoration:none;background:rgba(16,25,34,.55);transition:border-color .2s}.creative:hover{border-color:var(--line-hi)}.creative-icon{font-size:22px}.creative small{display:block;color:var(--dim);font:9px var(--mono);letter-spacing:.1em;text-transform:uppercase}.creative strong{font:500 13px var(--display)}
+    .contact{display:grid;grid-template-columns:1fr auto;gap:35px;align-items:center;padding:39px;border:1px solid var(--line);border-radius:9px;background:radial-gradient(ellipse at 90% 10%,rgba(92,225,230,.1),transparent 45%),var(--surface)}.contact h2{font:600 clamp(30px,4vw,44px)/1.15 var(--display);letter-spacing:-.05em;margin:13px 0}.contact p{color:var(--muted);font-size:13px;margin:0;max-width:520px}.contact-links{display:flex;gap:9px;flex-wrap:wrap;margin-top:24px}.contact .button{white-space:nowrap}
+    footer{padding:25px 0 32px;border-top:1px solid var(--line);margin-top:80px}.footer-inner{display:flex;align-items:center;justify-content:space-between;gap:20px}.footer-meta{font-size:9px;color:var(--dim);letter-spacing:.06em}.footer-social{display:flex;gap:18px}.footer-social a{font:10px var(--mono);color:var(--muted);text-decoration:none}.footer-social a:hover{color:var(--accent)}
+    .reveal{opacity:0;transform:translateY(18px);transition:opacity .6s ease,transform .6s ease}.reveal.visible{opacity:1;transform:none}
+    a:focus-visible,button:focus-visible{outline:2px solid var(--accent);outline-offset:3px}
+    @media(max-width:900px){.hero{grid-template-columns:1fr;gap:38px;padding-top:78px;min-height:auto}.hero-panel{max-width:620px}.two-col{grid-template-columns:1fr;gap:30px}.project-grid{grid-template-columns:repeat(2,1fr)}.featured-grid{grid-template-columns:repeat(3,1fr)}.cert-grid{grid-template-columns:repeat(2,1fr)}}
+    @media(max-width:680px){.wrap{width:min(100% - 36px,var(--max))}.nav{height:68px}.nav-cta{display:none}.menu-toggle{display:grid;place-items:center}.nav-links{display:none;position:absolute;top:68px;left:0;right:0;padding:17px 22px 22px;background:rgba(8,13,18,.98);border-bottom:1px solid var(--line);flex-direction:column;align-items:flex-start;gap:18px}.nav-links.open{display:flex}.hero{padding:66px 0 58px;gap:30px}.hero h1{font-size:clamp(44px,12vw,62px)}.hero-copy{font-size:15px}.hero-panel{padding:19px}.panel-title{margin-top:30px}.stats{grid-template-columns:repeat(2,1fr)}.stat{padding:16px;border-bottom:1px solid var(--line)}.stat:nth-child(2){border-right:0}.stat:nth-child(3),.stat:nth-child(4){border-bottom:0}.stat strong{font-size:24px}.section{padding:66px 0}.section-head{display:block}.section-note{margin-top:13px}.featured-grid{grid-template-columns:1fr}.feature-card{min-height:205px}.work-tools{display:block}.result-count{display:block;margin-top:12px}.project-grid{grid-template-columns:1fr}.project-card{min-height:190px}.cert-grid{grid-template-columns:1fr 1fr}.creative-grid{grid-template-columns:1fr}.contact{grid-template-columns:1fr;padding:25px}.contact .button{justify-self:start}.footer-inner{flex-direction:column;align-items:flex-start}.footer-social{flex-wrap:wrap}.brand-tag{font-size:9px;padding-left:9px}}
+    @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*,*:before,*:after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important}.reveal{opacity:1;transform:none}}
+  </style>
 </head>
 <body>
-
-<div class="orb orb1"></div>
-<div class="orb orb2"></div>
-
-<!-- NAV -->
-<nav>
-  <div class="container">
-    <div class="nav-inner">
-      <a href="#" class="nav-logo" aria-label="Jagdeep Singh Virdi — home">
-        <span class="logo-mark">
-          <svg class="logo-bracket" viewBox="0 0 16 40" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" aria-hidden="true">
-            <path id="logo-bracket-l" d="M13 3H8c-2.8 0-5 2.2-5 5v24c0 2.8 2.2 5 5 5h5" stroke-dasharray="60" stroke-dashoffset="60"/>
-          </svg>
-          <span class="logo-word">JSV</span>
-          <svg class="logo-bracket" viewBox="0 0 16 40" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" aria-hidden="true">
-            <path id="logo-bracket-r" d="M3 3h5c2.8 0 5 2.2 5 5v24c0 2.8-2.2 5-5 5H3" stroke-dasharray="60" stroke-dashoffset="60"/>
-          </svg>
-        </span>
-        <span class="logo-tag"><span class="logo-tag-text" id="logoTagText">Engineer<span class="dot">.</span></span></span>
+  <a class="skip" href="#main">Skip to content</a>
+  <header class="site-header">
+    <div class="wrap nav">
+      <a class="brand" href="#" aria-label="JSV — Jagdeep Singh Virdi, home">
+        <span class="brand-mark"><span class="bracket">[</span>JSV<span class="bracket">]</span></span>
+        <span class="brand-tag">Engineer · Builder</span>
       </a>
-      <ul class="nav-links">
-        <li><a href="#apps">Apps</a></li>
-        <li><a href="#projects">Projects</a></li>
-        <li><a href="#stack">Stack</a></li>
-        <li><a href="#experience">Experience</a></li>
-        <li><a href="#contact">Contact</a></li>
+      <button class="menu-toggle" type="button" aria-label="Open navigation" aria-expanded="false" aria-controls="primary-nav">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+      </button>
+      <ul class="nav-links" id="primary-nav">
+        <li><a href="#work">Work</a></li><li><a href="#expertise">Expertise</a></li><li><a href="#about">About</a></li><li><a href="#experience">Experience</a></li><li><a href="#contact">Contact</a></li>
       </ul>
+      <a class="nav-cta" href="#contact">Let’s talk <span aria-hidden="true">↗</span></a>
     </div>
-  </div>
-</nav>
+  </header>
 
-<!-- HERO -->
-<div class="container">
-  <section class="hero">
-    <div class="hero-label">Bangkok, Thailand</div>
-    <h1 class="hero-name">
-      Jagdeep<br>
-      <span class="line2">Singh Virdi</span>
-    </h1>
-    <p class="hero-role">Senior Telecom Billing Consultant &amp; Independent Builder</p>
-    <p class="hero-bio">
-      <strong>20+ years</strong> making high-stakes telecom billing systems work across Asia, the Middle East, and Europe. Off-hours, I build <strong>open-source tools</strong> and local-first AI systems — things that solve real problems without cloud dependency or unnecessary overhead.
-    </p>
-    <div class="hero-links">
-      <a href="https://github.com/jagdeepvirdi" target="_blank" rel="noopener" class="btn btn-primary">
-        <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.942.359.31.678.921.678 1.856 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z"/></svg>
-        GitHub
-      </a>
-      <a href="https://www.linkedin.com/in/jagdeepvirdi/" target="_blank" rel="noopener" class="btn btn-ghost">
-        <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
-        LinkedIn
-      </a>
-      <a href="#apps" class="btn btn-ghost">Explore live apps</a>
-      <a href="#contact" class="btn btn-ghost">Contact</a>
-    </div>
-  </section>
-
-  <!-- STATS -->
-  <div class="stats-bar">
-    <div class="stat-item">
-      <span class="stat-num">20+</span>
-      <span class="stat-label">Years in Industry</span>
-    </div>
-    <div class="stat-item">
-      <span class="stat-num">12+</span>
-      <span class="stat-label">Operators Delivered</span>
-    </div>
-    <div class="stat-item">
-      <span class="stat-num">4</span>
-      <span class="stat-label">Continents</span>
-    </div>
-    <div class="stat-item">
-      <span class="stat-num" id="statOpen">7</span>
-      <span class="stat-label">Open Source Projects</span>
-    </div>
-  </div>
-
-  <!-- LIVE APPS (filled from project cards by script) -->
-  <section id="apps" class="apps-section" hidden>
-    <div class="section-label">Try them</div>
-    <h2 class="section-title">Explore my live apps</h2>
-    <div class="apps-row" id="appsRow"></div>
-  </section>
-
-  <!-- PROJECTS -->
-  <section id="projects">
-    <div class="section-label">Work</div>
-    <h2 class="section-title">Projects &amp; Builds</h2>
-    <div id="featured" hidden>
-      <h3 class="subhead">Featured</h3>
-      <div class="projects-grid" id="featuredGrid"></div>
-    </div>
-    <h3 class="subhead" id="allHeading">Projects</h3>
-    <div class="filter-wrap">
-      <div class="filter-bar" id="filterBar" role="group" aria-label="Filter projects"></div>
-      <p class="filter-status" id="filterStatus" role="status" aria-live="polite"></p>
-    </div>
-    <div class="projects-grid compact" id="projectsGrid">
-
-      <div class="project-card" data-status="dev" data-type="personal" data-category="Apps" data-domain="">
-        <div class="card-top">
-          <div class="card-icon">🏃</div>
-          <div class="card-badges"><span class="card-status status-dev">In Development</span><span class="card-status card-type type-personal">Personal</span></div>
+  <main id="main">
+    <div class="wrap">
+      <section class="hero">
+        <div class="hero-content">
+          <div class="eyebrow">Technology consultant / Independent builder</div>
+          <h1>I build systems<br>and products that<br><span class="outline">move ideas forward.</span></h1>
+          <div class="hero-role">Telecom BSS · Enterprise Engineering · Product Development</div>
+          <p class="hero-copy">I’m Jagdeep — a technology consultant and software engineer with <strong>20+ years of experience</strong> building, integrating and evolving complex enterprise systems. Alongside consulting, I create independent software products that solve practical problems.</p>
+          <div class="hero-actions">
+            <a class="button" href="#work">Explore my work <span aria-hidden="true">↘</span></a>
+            <a class="button secondary" href="#contact">Get in touch <span aria-hidden="true">↗</span></a>
+          </div>
+          <div class="hero-meta"><span>Bangkok, Thailand</span><span>20+ years building</span><span>Open to good problems</span></div>
         </div>
-        <div class="card-title">PlayCru</div>
-        <div class="card-desc">Hyperlocal mobile app for finding nearby players for spontaneous pickup sports games. People-first, not venue-first. Launching in Thailand.</div>
-        <div class="card-tags">
-          <span class="tag">Flutter</span>
-          <span class="tag">Firebase</span>
-          <span class="tag">Firestore</span>
-          <span class="tag">Android</span>
-        </div>
+        <aside class="hero-panel reveal" aria-label="Current focus">
+          <div class="panel-top"><span>Field notes / 2026</span><span class="live-dot">● Building</span></div>
+          <div class="panel-title">Ideas become<br>useful things.</div>
+          <p class="panel-sub">A practical mix of deep systems thinking and hands-on product craft.</p>
+          <div class="panel-rule"></div>
+          <div class="build-list">
+            <div class="build-row"><span class="build-num">01</span><div><strong>Understand the system</strong><small>Architecture, constraints and real-world workflows</small></div></div>
+            <div class="build-row"><span class="build-num">02</span><div><strong>Design the experience</strong><small>Make complex capabilities clear and usable</small></div></div>
+            <div class="build-row"><span class="build-num">03</span><div><strong>Build what matters</strong><small>Ship dependable software with purpose</small></div></div>
+          </div>
+          <div class="panel-bottom"><span>Engineering × Product</span><span>TH / BKK</span></div>
+        </aside>
+      </section>
+
+      <div class="stats reveal" aria-label="Career highlights">
+        <div class="stat"><strong>20+</strong><span>Years in technology</span></div>
+        <div class="stat"><strong>9+</strong><span>Telecom operators</span></div>
+        <div class="stat"><strong>3</strong><span>Featured products</span></div>
+        <div class="stat"><strong>3</strong><span>Regions worked across</span></div>
       </div>
 
-      <a href="https://github.com/jagdeepvirdi/flowforge" target="_blank" rel="noopener" class="project-card" data-status="released" data-type="open" data-category="Developer tools" data-domain="github.com">
-        <div class="card-top">
-          <div class="card-icon">⚙️</div>
-          <div class="card-badges"><span class="card-status status-released">Released</span><span class="card-status card-type type-open">Open source</span></div>
+      <section class="section" id="work">
+        <div class="section-head reveal">
+          <div><div class="eyebrow">01 / Selected work</div><h2 class="section-title">Things I’ve put into the world.</h2></div>
+          <p class="section-note">Independent products, developer tools and professional work — built around useful ideas, not just demos.</p>
         </div>
-        <div class="card-title">FlowForge</div>
-        <div class="card-desc">Database-driven pipeline orchestrator. Configure complex automation workflows entirely from a UI — no YAML, no Airflow overhead. Born from production telecom reporting.</div>
-        <div class="card-tags">
-          <span class="tag">Python</span>
-          <span class="tag">PostgreSQL</span>
-          <span class="tag">Open Source</span>
+        <div class="featured-grid">
+          <a class="feature-card reveal" href="https://parichay.jagdeepsinghvirdi.com" target="_blank" rel="noopener noreferrer">
+            <div class="feature-top"><span class="feature-icon">प</span><span class="status">Live product</span></div>
+            <div><h3>Parichay</h3><p>A privacy-first way to exchange contact details. Share only the fields you choose, using QR codes — no account or server required.</p><div class="feature-link">Explore Parichay ↗</div></div>
+          </a>
+          <a class="feature-card reveal" href="https://reknit.jagdeepsinghvirdi.com" target="_blank" rel="noopener noreferrer">
+            <div class="feature-top"><span class="feature-icon">↻</span><span class="status">Live product</span></div>
+            <div><h3>Reknit</h3><p>A local-first habit tracker built around consistency, not perfection. Your habits stay on your device and work offline.</p><div class="feature-link">Explore Reknit ↗</div></div>
+          </a>
+          <a class="feature-card reveal" href="https://trove.jagdeepsinghvirdi.com" target="_blank" rel="noopener noreferrer">
+            <div class="feature-top"><span class="feature-icon">▧</span><span class="status">Live product</span></div>
+            <div><h3>Trove</h3><p>A personal catalog for movies, shows, books, music and more — keep the things you love organised in one private library.</p><div class="feature-link">Explore Trove ↗</div></div>
+          </a>
         </div>
-      </a>
+        <div class="work-tools reveal">
+          <div class="filter-list" role="group" aria-label="Filter projects">
+            <button class="filter-btn" type="button" data-filter="all" aria-pressed="true">All work</button>
+            <button class="filter-btn" type="button" data-filter="product" aria-pressed="false">Products</button>
+            <button class="filter-btn" type="button" data-filter="open" aria-pressed="false">Open source</button>
+            <button class="filter-btn" type="button" data-filter="professional" aria-pressed="false">Professional</button>
+            <button class="filter-btn" type="button" data-filter="building" aria-pressed="false">In progress</button>
+          </div>
+          <div class="result-count" id="result-count" aria-live="polite">Showing all projects</div>
+        </div>
+        <div class="project-grid" id="project-grid">
+          <a class="project-card" href="https://github.com/jagdeepvirdi/flowforge" target="_blank" rel="noopener noreferrer" data-category="open">
+            <div class="project-top"><span class="project-type">Developer tooling</span><span class="status">Open source</span></div><h3>FlowForge</h3><p>A database-driven pipeline orchestrator. Configure complex automation workflows through a UI — born from real telecom reporting needs.</p><div class="tags"><span class="tag">Python</span><span class="tag">PostgreSQL</span><span class="tag">Automation</span></div>
+          </a>
+          <a class="project-card" href="https://memex.jagdeepsinghvirdi.com" target="_blank" rel="noopener noreferrer" data-category="product">
+            <div class="project-top"><span class="project-type">Knowledge management</span><span class="status">Live</span></div><h3>Memex</h3><p>A self-hosted personal knowledge OS for notes, links, files and voice memos, with local AI and an encrypted vault.</p><div class="tags"><span class="tag">React</span><span class="tag">PostgreSQL</span><span class="tag">Ollama</span></div>
+          </a>
+          <a class="project-card" href="https://github.com/jagdeepvirdi/devbrain" target="_blank" rel="noopener noreferrer" data-category="open">
+            <div class="project-top"><span class="project-type">Developer productivity</span><span class="status">Open source</span></div><h3>DevBrain</h3><p>A developer knowledge base and command centre with RAG-powered Q&amp;A, runbooks and project-aware workflows.</p><div class="tags"><span class="tag">TypeScript</span><span class="tag">RAG</span><span class="tag">Local AI</span></div>
+          </a>
+          <a class="project-card" href="https://github.com/jagdeepvirdi/file-to-markdown" target="_blank" rel="noopener noreferrer" data-category="open">
+            <div class="project-top"><span class="project-type">Desktop utility</span><span class="status">Open source</span></div><h3>file-to-markdown</h3><p>A local-first desktop app that converts 15+ document formats into Markdown, with OCR and audio transcription. No uploads required.</p><div class="tags"><span class="tag">Python</span><span class="tag">Desktop</span><span class="tag">Privacy-first</span></div>
+          </a>
+          <a class="project-card" href="https://github.com/jagdeepvirdi/orbitly" target="_blank" rel="noopener noreferrer" data-category="building">
+            <div class="project-top"><span class="project-type">Personal platform</span><span class="status">In development</span></div><h3>Orbitly</h3><p>A personal life operating system bringing work, wellness, cultural events, sports and family sharing into one place.</p><div class="tags"><span class="tag">React</span><span class="tag">PostgreSQL</span><span class="tag">Productivity</span></div>
+          </a>
+          <a class="project-card" href="https://tekton-india.netlify.app/" target="_blank" rel="noopener noreferrer" data-category="professional">
+            <div class="project-top"><span class="project-type">Commerce / 3D</span><span class="status">Live</span></div><h3>Tekton India</h3><p>A resin furniture brand experience with an interactive 3D product configurator for visualising custom pieces.</p><div class="tags"><span class="tag">Web</span><span class="tag">3D</span><span class="tag">E-commerce</span></div>
+          </a>
+          <a class="project-card" href="https://arc-investments.vercel.app" target="_blank" rel="noopener noreferrer" data-category="open">
+            <div class="project-top"><span class="project-type">Financial analytics</span><span class="status">Live</span></div><h3>Arc Investments</h3><p>A stock analysis dashboard for Thailand’s SET 100, with charting and market analytics.</p><div class="tags"><span class="tag">React</span><span class="tag">TradingView</span><span class="tag">Python</span></div>
+          </a>
+          <a class="project-card" href="https://github.com/jagdeepvirdi/ResidualEdge" target="_blank" rel="noopener noreferrer" data-category="open">
+            <div class="project-top"><span class="project-type">Quant research</span><span class="status">Research</span></div><h3>ResidualEdge</h3><p>A multi-strategy quantitative research system for NSE/BSE equities, including market-neutral and intraday backtesting strategies.</p><div class="tags"><span class="tag">Python</span><span class="tag">Docker</span><span class="tag">Quant</span></div>
+          </a>
+          <a class="project-card" href="https://kitchen.jagdeepsinghvirdi.com" target="_blank" rel="noopener noreferrer" data-category="product">
+            <div class="project-top"><span class="project-type">Personal publishing</span><span class="status">Live</span></div><h3>Jaggi’s Kitchen</h3><p>A recipe journal for the home cooking I make, published as a fast, static Markdown-powered website.</p><div class="tags"><span class="tag">Next.js</span><span class="tag">TypeScript</span><span class="tag">Markdown</span></div>
+          </a>
+          <a class="project-card" href="https://mergepdf.jagdeepsinghvirdi.com" target="_blank" rel="noopener noreferrer" data-category="product">
+            <div class="project-top"><span class="project-type">Browser utility</span><span class="status">Live</span></div><h3>merge-pdf</h3><p>An offline PDF merger. Reorder files, select page ranges and combine documents directly in the browser — files stay on your device.</p><div class="tags"><span class="tag">JavaScript</span><span class="tag">pdf-lib</span><span class="tag">Offline</span></div>
+          </a>
+          <a class="project-card" href="https://www.advancetech.co.th" target="_blank" rel="noopener noreferrer" data-category="professional">
+            <div class="project-top"><span class="project-type">Business website</span><span class="status">Live</span></div><h3>Advance Tech Solutions</h3><p>A Bangkok IT infrastructure services website covering services, solutions, clients and direct enquiry workflows.</p><div class="tags"><span class="tag">Next.js</span><span class="tag">Tailwind</span><span class="tag">Resend</span></div>
+          </a>
+        </div>
+      </section>
 
-      <div class="project-card" data-status="private" data-type="pro" data-category="Telecom (professional)" data-featured="true" data-domain="">
-        <div class="card-top">
-          <div class="card-icon">📊</div>
-          <div class="card-badges"><span class="card-status status-private">Private</span><span class="card-status card-type type-pro">Professional</span></div>
+      <section class="section" id="expertise">
+        <div class="two-col">
+          <div class="reveal"><div class="eyebrow">02 / What I bring</div><h2 class="section-title">Deep systems thinking.<br>Practical product building.</h2><p class="section-note" style="margin-top:18px">A career spent connecting technology decisions to the realities of running a business.</p></div>
+          <div class="expertise-list reveal">
+            <div class="expertise-item"><span class="num">01</span><div><h3>Telecom BSS, charging &amp; billing</h3><p>Rating, billing, convergent charging, revenue management, custom development and production support across complex operator environments.</p></div></div>
+            <div class="expertise-item"><span class="num">02</span><div><h3>Enterprise architecture &amp; integration</h3><p>Designing dependable platforms, system boundaries, data flows and integrations — including Oracle database and SAP finance landscapes.</p></div></div>
+            <div class="expertise-item"><span class="num">03</span><div><h3>Software &amp; product engineering</h3><p>Taking ideas from problem framing and UX through implementation, iteration and delivery.</p></div></div>
+            <div class="expertise-item"><span class="num">04</span><div><h3>Automation, data &amp; applied AI</h3><p>Building practical automation, reporting, developer tools, retrieval workflows and local-first AI experiences.</p></div></div>
+          </div>
         </div>
-        <div class="card-title">Telecom Reporting System</div>
-        <div class="card-desc">End-to-end automated reporting platform for a Thai MVNO — Finance, Marketing, and Sales reports running clockwork daily, weekly, and monthly. Fully configurable, zero manual intervention.</div>
-        <div class="card-tags">
-          <span class="tag">PostgreSQL</span>
-          <span class="tag">Python</span>
-          <span class="tag">Automation</span>
-          <span class="tag">BSS</span>
-        </div>
-      </div>
+      </section>
 
-      <div class="project-card" data-status="private" data-type="pro" data-category="Telecom (professional)" data-domain="">
-        <div class="card-top">
-          <div class="card-icon">🔗</div>
-          <div class="card-badges"><span class="card-status status-private">Private</span><span class="card-status card-type type-pro">Professional</span></div>
+      <section class="section" id="about">
+        <div class="two-col">
+          <div class="reveal"><div class="eyebrow">03 / A little about me</div><h2 class="section-title">Curious by nature.<br>Engineer by craft.</h2></div>
+          <div class="about-copy reveal">
+            <p>I’ve spent my career at the intersection of <strong>technology, business and complex systems</strong>. I enjoy making difficult things understandable — then turning them into dependable solutions people can use.</p>
+            <p>My professional foundation is telecom billing and enterprise platforms. My independent work explores a wider range: privacy-first apps, developer tooling, personal knowledge systems, data products and experiments with local AI.</p>
+            <p>I believe good software should be <strong>thoughtful, useful and built with purpose</strong>. I value clear architecture, calm interfaces, maintainable engineering and products that respect the people using them.</p>
+            <div class="about-note">Based in Bangkok, Thailand <span aria-hidden="true">↗</span></div>
+          </div>
         </div>
-        <div class="card-title">SAP Finance Interface</div>
-        <div class="card-desc">Finance interface between a national telecom billing system and SAP. Became the client's primary invoice verification and revenue adjustment source — still running in production.</div>
-        <div class="card-tags">
-          <span class="tag">Perl</span>
-          <span class="tag">Oracle</span>
-          <span class="tag">PL/SQL</span>
-          <span class="tag">SAP</span>
-        </div>
-      </div>
+      </section>
 
-      <a href="https://memex.jagdeepsinghvirdi.com" target="_blank" rel="noopener" class="project-card" data-status="released" data-type="open" data-category="Developer tools" data-domain="memex.jagdeepsinghvirdi.com">
-        <div class="card-top">
-          <div class="card-icon">🧠</div>
-          <div class="card-badges"><span class="card-status status-released">Released</span><span class="card-status card-type type-open">Open source</span></div>
+      <section class="section" id="stack">
+        <div class="section-head reveal"><div><div class="eyebrow">04 / Tools of the trade</div><h2 class="section-title">A broad engineering toolkit.</h2></div><p class="section-note">The tools change. The goal stays the same: solve the right problem with the simplest dependable approach.</p></div>
+        <div class="stack-wrap reveal">
+          <span class="stack-pill">Oracle Database</span><span class="stack-pill">SQL / PL-SQL</span><span class="stack-pill">C / Pro*C</span><span class="stack-pill">Telecom BSS</span><span class="stack-pill">SAP Integration</span><span class="stack-pill">Python</span><span class="stack-pill">TypeScript</span><span class="stack-pill">JavaScript</span><span class="stack-pill">React</span><span class="stack-pill">Next.js</span><span class="stack-pill">Node.js</span><span class="stack-pill">PostgreSQL</span><span class="stack-pill">Supabase</span><span class="stack-pill">Flutter</span><span class="stack-pill">Dart</span><span class="stack-pill">Firebase</span><span class="stack-pill">Docker</span><span class="stack-pill">Linux</span><span class="stack-pill">Ollama</span><span class="stack-pill">Local LLMs</span><span class="stack-pill">RAG</span><span class="stack-pill">Git</span>
         </div>
-        <div class="card-title">Memex</div>
-        <div class="card-desc">Self-hosted personal knowledge OS. Save notes, links, files and voice memos; Memex files them and answers questions about them. AI runs locally via Ollama by default — cloud AI is opt-in. Imports Google Keep, encrypted vault, Obsidian export.</div>
-        <span class="domain-pill">memex.jagdeepsinghvirdi.com</span>
-        <div class="card-tags">
-          <span class="tag">Node.js</span>
-          <span class="tag">React</span>
-          <span class="tag">pgvector</span>
-          <span class="tag">Ollama</span>
-          <span class="tag">Local AI</span>
-        </div>
-      </a>
+      </section>
 
-      <a href="https://github.com/jagdeepvirdi/devbrain" target="_blank" rel="noopener" class="project-card" data-status="released" data-type="open" data-category="Developer tools" data-domain="github.com">
-        <div class="card-top">
-          <div class="card-icon">💡</div>
-          <div class="card-badges"><span class="card-status status-released">Released</span><span class="card-status card-type type-open">Open source</span></div>
+      <section class="section" id="experience">
+        <div class="section-head reveal"><div><div class="eyebrow">05 / Career</div><h2 class="section-title">Experience across platforms<br>and markets.</h2></div><p class="section-note">Telecom delivery, custom engineering and technical leadership across Asia, the Middle East and Europe.</p></div>
+        <div class="timeline reveal">
+          <article class="timeline-item"><div class="period">Dec 2021 — Present</div><h3>Lead Billing Consultant &amp; Senior Developer</h3><div class="company">Advance Tech Solutions · Bangkok</div><p>Supporting National Telecom (NT) and redONE. Custom development on Infinys Rating &amp; Billing 5.0, release management and building an automated reporting system from the ground up.</p></article>
+          <article class="timeline-item"><div class="period">Dec 2015 — Dec 2021</div><h3>Senior Consultant</h3><div class="company">Ditto (Thailand) · Bangkok</div><p>Senior billing consultant on Thai telecom engagements. Built and maintained custom components across RB 5.0 and CMP platforms, and automated data loading, reporting and notifications.</p></article>
+          <article class="timeline-item"><div class="period">Jul 2012 — Nov 2015</div><h3>Global Service Lead, Billing Consultant</h3><div class="company">BT · Bengaluru</div><p>Led custom development across 14 release trains for BT’s billing platform. Designed a report-generation tool, led the IRB 3.0.x to RBM 8.x upgrade workstream and owned release management.</p></article>
+          <article class="timeline-item"><div class="period">Jul 2006 — Jul 2012</div><h3>System Analyst &amp; Senior Developer</h3><div class="company">Convergys / NetCracker · Hyderabad</div><p>Delivered projects for 9+ operators across ASPAC, EMEA and the Middle East, including AIS, SmarTone, Qatar Telecom, Saudi Telecom, Telefónica, O2, Telecom Egypt and Sri Lanka Telecom. Tech lead for a Qatar Telecom rating and billing upgrade; onsite development lead at SmarTone Hong Kong.</p></article>
         </div>
-        <div class="card-title">DevBrain</div>
-        <div class="card-desc">Developer knowledge base and command center with RAG-powered Q&amp;A and runbooks. Notification hub via Telegram. Tracks all active projects, runs entirely on local Ollama models.</div>
-        <div class="card-tags">
-          <span class="tag">TypeScript</span>
-          <span class="tag">Ollama</span>
-          <span class="tag">RAG</span>
-          <span class="tag">Local AI</span>
-        </div>
-      </a>
+      </section>
 
-      <a href="https://github.com/jagdeepvirdi/file-to-markdown" target="_blank" rel="noopener" class="project-card" data-status="released" data-type="open" data-category="Developer tools" data-domain="github.com">
-        <div class="card-top">
-          <div class="card-icon">📄</div>
-          <div class="card-badges"><span class="card-status status-released">Released</span><span class="card-status card-type type-open">Open source</span></div>
+      <section class="section" id="learning">
+        <div class="section-head reveal"><div><div class="eyebrow">06 / Continuous learning</div><h2 class="section-title">Certifications.</h2></div></div>
+        <div class="cert-grid reveal">
+          <a class="cert" href="https://aiceos-cert.pages.dev/c/AIC-RW6P-D3P7" target="_blank" rel="noopener noreferrer"><small>AI CEOs Bangkok</small><strong>AI CEOs Workshop</strong><span>View certificate ↗</span></a>
+          <a class="cert" href="https://www.linkedin.com/in/jagdeepvirdi/overlay/Certifications/1333377895/treasury/?profileId=ACoAAAQLpbYBOZvwy3MkJn34ANyY_k4qMKCQ3pc" target="_blank" rel="noopener noreferrer"><small>Outskill</small><strong>Gen AI Engineering Mastermind</strong><span>View certificate ↗</span></a>
+          <a class="cert" href="https://www.coursera.org/account/accomplishments/specialization/certificate/WW3R97CF9VHL" target="_blank" rel="noopener noreferrer"><small>Coursera</small><strong>PostgreSQL for Everybody Specialization</strong><span>View certificate ↗</span></a>
+          <a class="cert" href="https://www.udacity.com/certificate/GSWEXYHC" target="_blank" rel="noopener noreferrer"><small>Udacity</small><strong>Data Science with Python</strong><span>View certificate ↗</span></a>
         </div>
-        <div class="card-title">file-to-markdown</div>
-        <div class="card-desc">Local-first desktop app that converts 15+ document formats — PDF, DOCX, PPTX, XLSX, EPUB and more — to Markdown. No AI, no uploads, no internet required. OCR and audio transcription included.</div>
-        <div class="card-tags">
-          <span class="tag">Python</span>
-          <span class="tag">pywebview</span>
-          <span class="tag">MarkItDown</span>
-          <span class="tag">Desktop App</span>
-          <span class="tag">Local-first</span>
-        </div>
-      </a>
+      </section>
 
-      <a href="https://github.com/jagdeepvirdi/orbitly" target="_blank" rel="noopener" class="project-card" data-status="dev" data-type="open" data-category="Apps" data-domain="github.com">
-        <div class="card-top">
-          <div class="card-icon">🪐</div>
-          <div class="card-badges"><span class="card-status status-dev">In Development</span><span class="card-status card-type type-open">Open source</span></div>
+      <section class="section" id="beyond">
+        <div class="section-head reveal"><div><div class="eyebrow">07 / Beyond code</div><h2 class="section-title">Other things I enjoy.</h2></div></div>
+        <div class="creative-grid reveal">
+          <a class="creative" href="https://www.instagram.com/jaggiskitchen/" target="_blank" rel="noopener noreferrer"><span class="creative-icon">🍳</span><span><small>Food &amp; cooking</small><strong>Jaggi’s Kitchen</strong></span></a>
+          <a class="creative" href="https://kitchen.jagdeepsinghvirdi.com" target="_blank" rel="noopener noreferrer"><span class="creative-icon">✍️</span><span><small>Recipes &amp; writing</small><strong>Kitchen Journal</strong></span></a>
+          <a class="creative" href="https://www.instagram.com/jaggitravelphotography/" target="_blank" rel="noopener noreferrer"><span class="creative-icon">📷</span><span><small>Travel photography</small><strong>Jaggi Travels</strong></span></a>
         </div>
-        <div class="card-title">Orbitly</div>
-        <div class="card-desc">Personal life operating system. Unified dashboard for work tasks, wellness, cultural events, sports tracking, and family sharing — all in one place, built for how I actually live.</div>
-        <div class="card-tags">
-          <span class="tag">React</span>
-          <span class="tag">Tailwind</span>
-          <span class="tag">Express</span>
-          <span class="tag">PostgreSQL</span>
-        </div>
-      </a>
+      </section>
 
-      <a href="https://tekton-india.netlify.app/" target="_blank" rel="noopener" class="project-card" data-status="live" data-type="pro" data-category="Web &amp; business sites" data-domain="tekton-india.netlify.app">
-        <div class="card-top">
-          <div class="card-icon">🪑</div>
-          <div class="card-badges"><span class="card-status status-live">Live</span><span class="card-status card-type type-pro">Professional</span></div>
+      <section class="section" id="contact">
+        <div class="contact reveal">
+          <div><div class="eyebrow">08 / Start a conversation</div><h2>Have an interesting<br>problem to solve?</h2><p>Let’s talk about telecom BSS, enterprise engineering, developer tools, independent products or ideas worth building.</p>
+            <div class="contact-links">
+              <a class="button secondary" href="https://www.linkedin.com/in/jagdeepvirdi/" target="_blank" rel="noopener noreferrer">LinkedIn ↗</a>
+              <a class="button secondary" href="https://wa.me/66953477320?text=Hi%20Jagdeep%2C%20I%20found%20you%20via%20your%20website." target="_blank" rel="noopener noreferrer">WhatsApp ↗</a>
+              <a class="button secondary" href="https://line.me/ti/p/~jagdeepsinghvirdi" target="_blank" rel="noopener noreferrer">LINE ↗</a>
+              <a class="button secondary" href="mailto:jagdeep.s.virdi@gmail.com">Email ↗</a>
+            </div>
+          </div>
+          <a class="button" href="mailto:jagdeep.s.virdi@gmail.com?subject=Hello%20Jagdeep">Get in touch <span aria-hidden="true">↗</span></a>
         </div>
-        <div class="card-title">Tekton India</div>
-        <div class="card-desc">Resin furniture brand with an interactive 3D product configurator — letting customers visualise custom pieces before ordering. Commerce meets craft.</div>
-        <div class="card-tags">
-          <span class="tag">HTML/CSS/JS</span>
-          <span class="tag">3D Configurator</span>
-          <span class="tag">E-Commerce</span>
-        </div>
-      </a>
-
-      <a href="https://arc-investments.vercel.app" target="_blank" rel="noopener" class="project-card" data-status="live" data-type="open" data-category="Finance &amp; trading" data-domain="arc-investments.vercel.app">
-        <div class="card-top">
-          <div class="card-icon">📈</div>
-          <div class="card-badges"><span class="card-status status-live">Live</span><span class="card-status card-type type-open">Open source</span></div>
-        </div>
-        <div class="card-title">Arc Investments</div>
-        <div class="card-desc">Professional-grade SET 100 stock analysis dashboard for the Thai stock market — real-time charting and analytics built on TradingView's lightweight-charts.</div>
-        <div class="card-tags">
-          <span class="tag">React</span>
-          <span class="tag">Vite</span>
-          <span class="tag">TradingView</span>
-          <span class="tag">Python</span>
-        </div>
-      </a>
-
-      <a href="https://github.com/jagdeepvirdi/ResidualEdge" target="_blank" rel="noopener" class="project-card" data-status="released" data-type="open" data-category="Finance &amp; trading" data-domain="github.com">
-        <div class="card-top">
-          <div class="card-icon">💹</div>
-          <div class="card-badges"><span class="card-status status-released">Released</span><span class="card-status card-type type-open">Open source</span></div>
-        </div>
-        <div class="card-title">ResidualEdge</div>
-        <div class="card-desc">Multi-strategy quantitative research and trading system for NSE/BSE Indian equities — market-neutral paper strategy, live-capital compounder, and an intraday research backtester.</div>
-        <div class="card-tags">
-          <span class="tag">Python</span>
-          <span class="tag">TypeScript</span>
-          <span class="tag">Docker</span>
-          <span class="tag">Quant Trading</span>
-        </div>
-      </a>
-
-      <a href="https://kitchen.jagdeepsinghvirdi.com" target="_blank" rel="noopener" class="project-card" data-status="live" data-type="personal" data-category="Web &amp; business sites" data-domain="kitchen.jagdeepsinghvirdi.com">
-        <div class="card-top">
-          <div class="card-icon">🍳</div>
-          <div class="card-badges"><span class="card-status status-live">Live</span><span class="card-status card-type type-personal">Personal</span></div>
-        </div>
-        <div class="card-title">Jaggi's Kitchen</div>
-        <div class="card-desc">Recipe blog for the home cooking I actually make. Recipes are written in Markdown and rendered as a fast, fully static Next.js site.</div>
-        <span class="domain-pill">kitchen.jagdeepsinghvirdi.com</span>
-        <div class="card-tags">
-          <span class="tag">Next.js</span>
-          <span class="tag">React</span>
-          <span class="tag">TypeScript</span>
-          <span class="tag">Markdown</span>
-        </div>
-      </a>
-
-      <a href="https://reknit.jagdeepsinghvirdi.com" target="_blank" rel="noopener" class="project-card" data-status="live" data-type="personal" data-category="Apps" data-featured="true" data-domain="reknit.jagdeepsinghvirdi.com">
-        <div class="card-top">
-          <div class="card-icon">🧶</div>
-          <div class="card-badges"><span class="card-status status-live">Live</span><span class="card-status card-type type-personal">Personal</span></div>
-        </div>
-        <div class="card-title">Reknit</div>
-        <div class="card-desc">Free, local-first habit tracker built on the habit loop. A missed day never breaks your streak. No account, no server, no analytics — everything lives in your browser and works offline as an installable PWA.</div>
-        <span class="domain-pill">reknit.jagdeepsinghvirdi.com</span>
-        <div class="card-tags">
-          <span class="tag">React</span>
-          <span class="tag">TypeScript</span>
-          <span class="tag">Tailwind</span>
-          <span class="tag">PWA</span>
-        </div>
-      </a>
-
-      <a href="https://mergepdf.jagdeepsinghvirdi.com" target="_blank" rel="noopener" class="project-card" data-status="live" data-type="personal" data-category="Apps" data-domain="mergepdf.jagdeepsinghvirdi.com">
-        <div class="card-top">
-          <div class="card-icon">📎</div>
-          <div class="card-badges"><span class="card-status status-live">Live</span><span class="card-status card-type type-personal">Personal</span></div>
-        </div>
-        <div class="card-title">merge-pdf</div>
-        <div class="card-desc">Offline PDF merger that runs entirely in your browser. Drag to reorder files, pick page ranges per file, and download one combined PDF. Nothing is uploaded, stored or sent anywhere.</div>
-        <span class="domain-pill">mergepdf.jagdeepsinghvirdi.com</span>
-        <div class="card-tags">
-          <span class="tag">JavaScript</span>
-          <span class="tag">pdf-lib</span>
-          <span class="tag">Offline</span>
-          <span class="tag">Privacy-first</span>
-        </div>
-      </a>
-
-      <a href="https://parichay.jagdeepsinghvirdi.com" target="_blank" rel="noopener" class="project-card" data-status="live" data-type="personal" data-category="Apps" data-featured="true" data-domain="parichay.jagdeepsinghvirdi.com">
-        <div class="card-top">
-          <div class="card-icon">🪪</div>
-          <div class="card-badges"><span class="card-status status-live">Live</span><span class="card-status card-type type-personal">Personal</span></div>
-        </div>
-        <div class="card-title">Parichay</div>
-        <div class="card-desc">Local-first contact exchange. Build your card once, share only the fields you choose as a QR code, and scan others into groups. No account, no server, works offline as an installable PWA.</div>
-        <span class="domain-pill">parichay.jagdeepsinghvirdi.com</span>
-        <div class="card-tags">
-          <span class="tag">React</span>
-          <span class="tag">TypeScript</span>
-          <span class="tag">Tailwind</span>
-          <span class="tag">PWA</span>
-        </div>
-      </a>
-
-      <a href="https://trove.jagdeepsinghvirdi.com" target="_blank" rel="noopener" class="project-card" data-status="live" data-type="personal" data-category="Apps" data-featured="true" data-domain="trove.jagdeepsinghvirdi.com">
-        <div class="card-top">
-          <div class="card-icon">🎬</div>
-          <div class="card-badges"><span class="card-status status-live">Live</span><span class="card-status card-type type-personal">Personal</span></div>
-        </div>
-        <div class="card-title">Trove</div>
-        <div class="card-desc">Private catalog for movies, TV, videos, books and music. Track what you want to watch or read, who recommended it, and what you thought — with AI recommendations from your own library and shared lists for movie night.</div>
-        <span class="domain-pill">trove.jagdeepsinghvirdi.com</span>
-        <div class="card-tags">
-          <span class="tag">Next.js</span>
-          <span class="tag">TypeScript</span>
-          <span class="tag">Postgres</span>
-          <span class="tag">Gemini</span>
-        </div>
-      </a>
-
-      <div class="project-card" data-status="private" data-type="personal" data-category="Finance &amp; trading" data-domain="">
-        <div class="card-top">
-          <div class="card-icon">🏠</div>
-          <div class="card-badges"><span class="card-status status-private">Private</span><span class="card-status card-type type-personal">Personal</span></div>
-        </div>
-        <div class="card-title">Ghar</div>
-        <div class="card-desc">Household finance and investment tracker for two people across two countries. Each person sees full detail on their own finances and only totals for the other's — enforced in the database, not just the UI.</div>
-        <div class="card-tags">
-          <span class="tag">React</span>
-          <span class="tag">FastAPI</span>
-          <span class="tag">PostgreSQL</span>
-          <span class="tag">TypeScript</span>
-        </div>
-      </div>
-
-      <a href="https://www.advancetech.co.th" target="_blank" rel="noopener" class="project-card" data-status="live" data-type="pro" data-category="Web &amp; business sites" data-domain="www.advancetech.co.th">
-        <div class="card-top">
-          <div class="card-icon">🖧</div>
-          <div class="card-badges"><span class="card-status status-live">Live</span><span class="card-status card-type type-pro">Professional</span></div>
-        </div>
-        <div class="card-title">Advance Tech Solutions</div>
-        <div class="card-desc">Marketing website for a Bangkok-based IT infrastructure services company — services, solutions and maintenance, clients and about pages, with a contact form that emails enquiries straight to the team.</div>
-        <div class="card-tags">
-          <span class="tag">Next.js</span>
-          <span class="tag">Tailwind</span>
-          <span class="tag">TypeScript</span>
-          <span class="tag">Resend</span>
-        </div>
-      </a>
-
+      </section>
     </div>
-    <button type="button" class="btn btn-ghost show-more" id="showMore" aria-expanded="false" hidden></button>
-  </section>
-
-  <!-- STACK -->
-  <section id="stack">
-    <div class="section-label">Tools</div>
-    <h2 class="section-title">Tech Stack</h2>
-    <div class="stack-grid">
-      <span class="stack-pill">Python</span>
-      <span class="stack-pill">PostgreSQL</span>
-      <span class="stack-pill">Perl</span>
-      <span class="stack-pill">Oracle / PL/SQL</span>
-      <span class="stack-pill">React</span>
-      <span class="stack-pill">TypeScript</span>
-      <span class="stack-pill">Tailwind CSS</span>
-      <span class="stack-pill">Node.js</span>
-      <span class="stack-pill">FastAPI</span>
-      <span class="stack-pill">Supabase</span>
-      <span class="stack-pill">Flutter</span>
-      <span class="stack-pill">Dart</span>
-      <span class="stack-pill">Firebase</span>
-      <span class="stack-pill">Firestore</span>
-      <span class="stack-pill">Shell Scripting</span>
-      <span class="stack-pill">C / Pro*C</span>
-      <span class="stack-pill">Ollama</span>
-      <span class="stack-pill">Local LLMs</span>
-      <span class="stack-pill">Unix / Linux</span>
-      <span class="stack-pill">Git</span>
-    </div>
-  </section>
-
-  <!-- EXPERIENCE -->
-  <section id="experience">
-    <div class="section-label">Career</div>
-    <h2 class="section-title">Experience</h2>
-    <div class="timeline">
-      <div class="tl-item">
-        <div class="tl-dot"></div>
-        <div class="tl-period">Dec 2021 — Present</div>
-        <div class="tl-role">Lead Billing Consultant &amp; Senior Developer</div>
-        <div class="tl-company">Advance Tech Solutions · Bangkok</div>
-        <div class="tl-desc">Supporting National Telecom (NT) and redONE — Thailand's largest fixed-line provider and first postpaid MVNO. Custom development on Infinys Rating &amp; Billing 5.0, release management, and built a full automated reporting system from the ground up.</div>
-      </div>
-      <div class="tl-item">
-        <div class="tl-dot"></div>
-        <div class="tl-period">Dec 2015 — Dec 2021</div>
-        <div class="tl-role">Senior Consultant</div>
-        <div class="tl-company">Ditto (Thailand) · Bangkok</div>
-        <div class="tl-desc">Senior billing consultant on Thai telecom engagements. Built and maintained custom components across RB 5.0 and CMP platforms. Automated data loading, reporting, and notifications — significantly cutting manual operational effort.</div>
-      </div>
-      <div class="tl-item">
-        <div class="tl-dot"></div>
-        <div class="tl-period">Jul 2012 — Nov 2015</div>
-        <div class="tl-role">Global Service Lead, Billing Consultant</div>
-        <div class="tl-company">BT · Bengaluru</div>
-        <div class="tl-desc">Led custom development across 14 release trains for BT's billing platform. Designed a report-generation tool and led the core IRB 3.0.x → RBM 8.x upgrade workstream. Reviewed all vendor code and owned release management end to end.</div>
-      </div>
-      <div class="tl-item">
-        <div class="tl-dot"></div>
-        <div class="tl-period">Jul 2006 — Jul 2012</div>
-        <div class="tl-role">System Analyst &amp; Senior Developer</div>
-        <div class="tl-company">Convergys / NetCracker · Hyderabad</div>
-        <div class="tl-desc">Delivered across 9+ operators in ASPAC, EMEA, and the Middle East — AIS, SmarTone, Qatar Telecom, Saudi Telecom, Telefónica, O2, Telecom Egypt, Sri Lanka Telecom. Tech Lead for Qatar Telecom RB upgrade; onsite development lead at SmarTone Hong Kong.</div>
-      </div>
-    </div>
-  </section>
-
-  <!-- CERTIFICATIONS -->
-  <section>
-    <div class="section-label">Learning</div>
-    <h2 class="section-title">Certifications</h2>
-    <div class="certs-grid">
-
-      <a href="https://aiceos-cert.pages.dev/c/AIC-RW6P-D3P7" target="_blank" rel="noopener" class="cert-card">
-        <div class="cert-provider">AI CEOs Bangkok</div>
-        <div class="cert-name">AI CEOs Workshop</div>
-        <div class="cert-verify">View Certificate →</div>
-      </a>
-
-      <a href="https://www.linkedin.com/in/jagdeepvirdi/overlay/Certifications/1333377895/treasury/?profileId=ACoAAAQLpbYBOZvwy3MkJn34ANyY_k4qMKCQ3pc" target="_blank" rel="noopener" class="cert-card">
-        <div class="cert-provider">Outskill</div>
-        <div class="cert-name">Gen AI Engineering Mastermind</div>
-        <div class="cert-verify">View Certificate →</div>
-      </a>
-
-      <a href="https://www.coursera.org/account/accomplishments/specialization/certificate/WW3R97CF9VHL" target="_blank" rel="noopener" class="cert-card">
-        <div class="cert-provider">Coursera</div>
-        <div class="cert-name">PostgreSQL for Everybody Specialization</div>
-        <div class="cert-verify">View Certificate →</div>
-      </a>
-
-      <a href="https://www.udacity.com/certificate/GSWEXYHC" target="_blank" rel="noopener" class="cert-card">
-        <div class="cert-provider">Udacity</div>
-        <div class="cert-name">Data Science with Python</div>
-        <div class="cert-verify">View Certificate →</div>
-      </a>
-
-    </div>
-  </section>
-
-  <!-- CREATIVE SIDE -->
-  <section>
-    <div class="section-label">Beyond Code</div>
-    <h2 class="section-title">Creative Side</h2>
-    <div class="creative-row">
-      <a href="https://www.instagram.com/jaggiskitchen/" target="_blank" rel="noopener" class="creative-card">
-        <div class="creative-icon">🍳</div>
-        <div>
-          <div class="creative-label">Food &amp; Cooking</div>
-          <div class="creative-name">Jaggi's Kitchen</div>
-        </div>
-      </a>
-      <a href="https://kitchen.jagdeepsinghvirdi.com" target="_blank" rel="noopener" class="creative-card">
-        <div class="creative-icon">✍️</div>
-        <div>
-          <div class="creative-label">Blog</div>
-          <div class="creative-name">Jaggi's Kitchen Blog</div>
-        </div>
-      </a>
-      <a href="https://www.instagram.com/jaggitravelphotography/" target="_blank" rel="noopener" class="creative-card">
-        <div class="creative-icon">📷</div>
-        <div>
-          <div class="creative-label">Travel Photography</div>
-          <div class="creative-name">Jaggi Travels</div>
-        </div>
-      </a>
-    </div>
-  </section>
-
-  <!-- CONTACT -->
-  <section id="contact" style="padding-bottom:2rem">
-    <div class="section-label">Connect</div>
-    <h2 class="section-title">Get in Touch</h2>
-    <p style="color:var(--text2);font-size:15px;margin-bottom:2rem;max-width:480px;font-weight:300;line-height:1.8">
-      Open to conversations about telecom BSS, developer tooling, local-first AI, or just comparing notes on systems that actually work.
-    </p>
-    <div class="hero-links">
-      <a href="https://www.linkedin.com/in/jagdeepvirdi/" target="_blank" rel="noopener" class="btn btn-primary">Message on LinkedIn</a>
-      <a href="https://wa.me/66953477320?text=Hi%20Jagdeep%2C%20I%20found%20you%20via%20your%20website." target="_blank" rel="noopener" class="btn btn-ghost">
-        <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
-        WhatsApp
-      </a>
-      <a href="https://line.me/ti/p/~jagdeepsinghvirdi" target="_blank" rel="noopener" class="btn btn-ghost">
-        <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M19.365 9.863c.349 0 .63.285.63.631 0 .345-.281.63-.63.63H17.61v1.125h1.755c.349 0 .63.283.63.63 0 .344-.281.629-.63.629h-2.386c-.345 0-.627-.285-.627-.629V8.108c0-.345.282-.63.63-.63h2.386c.346 0 .627.285.627.63 0 .349-.281.63-.63.63H17.61v1.125h1.755zm-3.855 3.016c0 .27-.174.51-.432.596-.064.021-.133.031-.199.031-.211 0-.391-.09-.51-.25l-2.443-3.317v2.94c0 .344-.279.629-.631.629-.346 0-.626-.285-.626-.629V8.108c0-.27.173-.51.43-.595.06-.023.136-.033.194-.033.195 0 .375.104.495.254l2.462 3.33V8.108c0-.345.282-.63.63-.63.345 0 .63.285.63.63v4.771zm-5.741 0c0 .344-.282.629-.631.629-.345 0-.627-.285-.627-.629V8.108c0-.345.282-.63.63-.63.346 0 .628.285.628.63v4.771zm-2.466.629H4.917c-.345 0-.63-.285-.63-.629V8.108c0-.345.285-.63.63-.63.348 0 .63.285.63.63v4.141h1.756c.348 0 .629.283.629.63 0 .344-.282.629-.629.629M24 10.314C24 4.943 18.615.572 12 .572S0 4.943 0 10.314c0 4.811 4.27 8.842 10.035 9.608.391.082.923.258 1.058.59.12.301.079.766.038 1.08l-.164 1.02c-.045.301-.24 1.186 1.049.645 1.291-.539 6.916-4.078 9.436-6.975C23.176 14.393 24 12.458 24 10.314"/></svg>
-        LINE
-      </a>
-      <a href="mailto:jagdeep.s.virdi@gmail.com" class="btn btn-ghost">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-10 6L2 7"/></svg>
-        jagdeep.s.virdi@gmail.com
-      </a>
-      <a href="https://github.com/jagdeepvirdi" target="_blank" rel="noopener" class="btn btn-ghost">View GitHub</a>
-      <a href="https://www.instagram.com/jagdeepvirdi.dev/" target="_blank" rel="noopener" class="btn btn-ghost">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="0.8" fill="currentColor"/></svg>
-        Instagram
-      </a>
-    </div>
-  </section>
-
-</div>
-
-<!-- FOOTER -->
-<footer>
-  <div class="container">
-    <div class="footer-inner">
-      <span class="footer-left">jagdeepsinghvirdi.com</span>
-      <span class="footer-credit">
-        Designed &amp; Developed by <a href="https://jagdeepsinghvirdi.com">Jagdeep Singh Virdi</a>
-      </span>
-    </div>
-  </div>
-</footer>
-
-
-<script>
-document.addEventListener('DOMContentLoaded', () => {
-  const bracketLeft = document.getElementById('logo-bracket-l');
-  const bracketRight = document.getElementById('logo-bracket-r');
-  requestAnimationFrame(() => {
-    bracketLeft.style.transition = 'stroke-dashoffset 0.6s cubic-bezier(0.22,1,0.36,1)';
-    bracketRight.style.transition = 'stroke-dashoffset 0.6s cubic-bezier(0.22,1,0.36,1) 0.15s';
-    bracketLeft.style.strokeDashoffset = '0';
-    bracketRight.style.strokeDashoffset = '0';
-  });
-
-  const words = ['Engineer', 'Builder', 'Problem Solver'];
-  let idx = 0;
-  const tagText = document.getElementById('logoTagText');
-
-  function showFirst() {
-    tagText.style.transition = 'transform 0.4s cubic-bezier(0.22,1,0.36,1), opacity 0.4s ease';
-    tagText.style.transform = 'translateY(0)';
-    tagText.style.opacity = '1';
-  }
-
-  function cycleTag() {
-    tagText.style.transform = 'translateY(8px)';
-    tagText.style.opacity = '0';
-    setTimeout(() => {
-      idx = (idx + 1) % words.length;
-      tagText.innerHTML = words[idx] + '<span class="dot">.</span>';
-      tagText.style.transition = 'none';
-      tagText.style.transform = 'translateY(-8px)';
-      void tagText.offsetHeight;
-      tagText.style.transition = 'transform 0.4s cubic-bezier(0.22,1,0.36,1), opacity 0.4s ease';
-      tagText.style.transform = 'translateY(0)';
-      tagText.style.opacity = '1';
-    }, 400);
-  }
-
-  setTimeout(showFirst, 900);
-
-  let tagInterval = setInterval(cycleTag, 2600);
-
-  const navLogo = document.querySelector('.nav-logo');
-  navLogo.addEventListener('mouseenter', () => {
-    clearInterval(tagInterval);
-    const dot = tagText.querySelector('.dot');
-    if (dot) {
-      dot.classList.remove('pulse');
-      void dot.offsetWidth;
-      dot.classList.add('pulse');
-    }
-  });
-  navLogo.addEventListener('mouseleave', () => {
-    clearInterval(tagInterval);
-    tagInterval = setInterval(cycleTag, 2600);
-  });
-});
-</script>
-
-<script>
-(function () {
-  var cards = Array.prototype.slice.call(document.querySelectorAll('#projects .project-card'));
-  var OWN = /(^|\.)jagdeepsinghvirdi\.com$/;
-  var FILTERS = [
-    { key: 'all',  label: 'All',         test: function () { return true; } },
-    { key: 'live', label: 'Live',        test: function (c) { return c.dataset.status === 'live'; } },
-    { key: 'open', label: 'Open Source', test: function (c) { return c.dataset.type === 'open'; } },
-    { key: 'pro',  label: 'Professional',test: function (c) { return c.dataset.type === 'pro'; } },
-    { key: 'dev',  label: 'In Dev',      test: function (c) { return c.dataset.status === 'dev'; } }
-  ];
-  var byKey = {};
-  FILTERS.forEach(function (f) { byKey[f.key] = f; });
-
-  // Open Source stat from data attributes
-  var statOpen = document.getElementById('statOpen');
-  if (statOpen) statOpen.textContent = cards.filter(byKey.open.test).length;
-
-  // Filter chips
-  var bar = document.getElementById('filterBar');
-  var statusEl = document.getElementById('filterStatus');
-  var chips = {};
-  FILTERS.forEach(function (f) {
-    var b = document.createElement('button');
-    b.type = 'button';
-    b.className = 'chip';
-    b.setAttribute('aria-pressed', 'false');
-    b.appendChild(document.createTextNode(f.label));
-    var n = document.createElement('span');
-    n.className = 'count';
-    n.textContent = cards.filter(f.test).length;
-    b.appendChild(n);
-    b.addEventListener('click', function () {
-      expanded = false;
-      apply(f.key);
-      history.replaceState(null, '', f.key === 'all' ? '#projects' : '#projects?filter=' + f.key);
-    });
-    chips[f.key] = b;
-    bar.appendChild(b);
-  });
-
-  var PREVIEW = 6;
-  var expanded = false;
-  var currentKey = 'all';
-  var featuredBox = document.getElementById('featured');
-  var featuredGrid = document.getElementById('featuredGrid');
-  var allHeading = document.getElementById('allHeading');
-  var moreBtn = document.getElementById('showMore');
-
-  // Keep the sticky filter bar just under the (sticky) nav
-  var navEl = document.querySelector('nav');
-  function setNavH() { document.documentElement.style.setProperty('--nav-h', navEl.offsetHeight + 'px'); }
-  setNavH();
-  window.addEventListener('resize', setNavH);
-
-  // Featured row: clones of cards flagged data-featured
-  var featured = cards.filter(function (c) { return c.dataset.featured === 'true'; });
-  featured.forEach(function (c) {
-    var k = c.cloneNode(true);
-    k.classList.add('featured');
-    featuredGrid.appendChild(k);
-  });
-
-  moreBtn.addEventListener('click', function () {
-    expanded = !expanded;
-    apply(currentKey);
-    if (!expanded) allHeading.scrollIntoView();
-  });
-
-  function apply(key) {
-    var f = byKey[key] || byKey.all;
-    currentKey = f.key;
-    // In the unfiltered view featured cards live in the Featured row, so skip them in the list
-    var inRow = f.key === 'all' && featured.length > 0;
-    var list = cards.filter(function (c) {
-      return f.test(c) && !(inRow && c.dataset.featured === 'true');
-    });
-    var shown = inRow ? featured.length : 0;
-    cards.forEach(function (c) { c.hidden = true; });
-    list.forEach(function (c, i) {
-      var vis = expanded || i < PREVIEW;
-      c.hidden = !vis;
-      if (vis) shown++;
-    });
-    featuredBox.hidden = !inRow;
-    allHeading.textContent = inRow ? 'More projects' : 'Projects';
-    if (list.length > PREVIEW) {
-      moreBtn.hidden = false;
-      moreBtn.textContent = expanded ? 'Show fewer' : 'Show all ' + list.length + ' projects';
-      moreBtn.setAttribute('aria-expanded', String(expanded));
-    } else {
-      moreBtn.hidden = true;
-    }
-    FILTERS.forEach(function (x) { chips[x.key].setAttribute('aria-pressed', String(x.key === f.key)); });
-    statusEl.textContent = 'Showing ' + shown + ' of ' + cards.length + ' projects';
-  }
-
-  function fromHash() {
-    var m = location.hash.match(/^#projects\?filter=(\w+)/);
-    return m && byKey[m[1]] ? m[1] : null;
-  }
-
-  apply(fromHash() || 'all');
-  if (location.hash.indexOf('#projects?') === 0) {
-    document.getElementById('projects').scrollIntoView();
-  }
-  window.addEventListener('hashchange', function () {
-    var k = fromHash();
-    apply(k || 'all');
-    if (k) document.getElementById('projects').scrollIntoView();
-  });
-
-  // Live apps strip: any card linking to *.jagdeepsinghvirdi.com
-  var row = document.getElementById('appsRow');
-  var tiles = 0;
-  cards.forEach(function (c) {
-    var host = c.dataset.domain;
-    if (c.tagName !== 'A' || !host || !OWN.test(host)) return;
-    var icon = c.querySelector('.card-icon').textContent;
-    var title = c.querySelector('.card-title').textContent;
-    var desc = c.querySelector('.card-desc').textContent.trim();
-    var m = desc.match(/^.*?[.!?](?=\s|$)/);
-
-    var a = document.createElement('a');
-    a.className = 'app-tile';
-    a.href = c.getAttribute('href');
-    a.target = '_blank';
-    a.rel = 'noopener';
-
-    var i = document.createElement('div'); i.className = 'card-icon'; i.textContent = icon;
-    var t = document.createElement('div'); t.className = 'card-title'; t.textContent = title;
-    var p = document.createElement('div'); p.className = 'app-pitch'; p.textContent = m ? m[0] : desc;
-    var d = document.createElement('span'); d.className = 'domain-pill';
-    var dot = host.indexOf('.');
-    d.appendChild(document.createTextNode(host.slice(0, dot)));
-    var sfx = document.createElement('span'); sfx.className = 'pill-suffix'; sfx.textContent = host.slice(dot);
-    d.appendChild(sfx);
-    a.appendChild(i); a.appendChild(t); a.appendChild(p); a.appendChild(d);
-    row.appendChild(a);
-    tiles++;
-  });
-  if (tiles) document.getElementById('apps').hidden = false;
-})();
-</script>
-
+  </main>
+  <footer><div class="wrap footer-inner"><div class="footer-meta">© <span id="year">2026</span> JSV / Jagdeep Singh Virdi · Bangkok, Thailand</div><div class="footer-social"><a href="https://github.com/jagdeepvirdi" target="_blank" rel="noopener noreferrer">GitHub ↗</a><a href="https://www.linkedin.com/in/jagdeepvirdi/" target="_blank" rel="noopener noreferrer">LinkedIn ↗</a><a href="https://www.instagram.com/jagdeepvirdi.dev/" target="_blank" rel="noopener noreferrer">Instagram ↗</a></div></div></footer>
+  <script>
+    (function(){
+      const toggle=document.querySelector('.menu-toggle');
+      const nav=document.querySelector('.nav-links');
+      toggle.addEventListener('click',function(){
+        const open=nav.classList.toggle('open');
+        toggle.setAttribute('aria-expanded',String(open));
+        toggle.setAttribute('aria-label',open?'Close navigation':'Open navigation');
+      });
+      nav.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>{nav.classList.remove('open');toggle.setAttribute('aria-expanded','false');toggle.setAttribute('aria-label','Open navigation')}));
+      const cards=[...document.querySelectorAll('.project-card')];
+      const buttons=[...document.querySelectorAll('.filter-btn')];
+      const count=document.getElementById('result-count');
+      buttons.forEach(btn=>btn.addEventListener('click',()=>{
+        const filter=btn.dataset.filter;
+        buttons.forEach(b=>b.setAttribute('aria-pressed',String(b===btn)));
+        let visible=0;
+        cards.forEach(card=>{const show=filter==='all'||card.dataset.category===filter;card.hidden=!show;if(show)visible++});
+        count.textContent='Showing '+visible+' '+(visible===1?'project':'projects');
+      }));
+      document.getElementById('year').textContent=new Date().getFullYear();
+      const reduced=window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      if(!reduced&&'IntersectionObserver'in window){
+        const observer=new IntersectionObserver(entries=>entries.forEach(entry=>{if(entry.isIntersecting){entry.target.classList.add('visible');observer.unobserve(entry.target)}}),{threshold:.12});
+        document.querySelectorAll('.reveal').forEach(el=>observer.observe(el));
+      }else{document.querySelectorAll('.reveal').forEach(el=>el.classList.add('visible'))}
+    })();
+  </script>
 </body>
 </html>
